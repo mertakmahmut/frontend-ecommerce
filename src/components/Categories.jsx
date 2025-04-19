@@ -57,6 +57,7 @@ const Categories = () => {
                     <div className='w-[100px] h-[2px] bg-[#059473] mt-4'></div>
                 </div>
             </div>
+
             <Carousel
                 autoPlay={true}
                 infinite={true}
@@ -76,7 +77,7 @@ const Categories = () => {
                 </Link> )
             }
             </Carousel>        
-         </div>
+        </div>
              
     );
 };
