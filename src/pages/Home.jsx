@@ -14,7 +14,6 @@ const Home = () => {
     const dispatch = useDispatch()
     const {categories} = useSelector(state => state.home)
     
-
     useEffect(() => {
         dispatch(get_category())
     }, [])

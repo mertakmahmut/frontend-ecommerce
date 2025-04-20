@@ -15,7 +15,7 @@ import Pagination from '../components/Pagination';
 const Shops = () => {
 
     const [filter, setFilter] = useState(true)
-    const categorys = [
+    const categories = [
         'Mobiles',
         'Laptops',
         'Speakers',
@@ -34,7 +34,7 @@ const Shops = () => {
 
     return (
         <div>
-            <Header/>
+            <Header />
             <section className='bg-[url("http://localhost:3000/images/banner/shop.png")] h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'>
             <div className='absolute left-0 top-0 w-full h-full bg-[#2422228a]'>
                 <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
@@ -66,7 +66,7 @@ const Shops = () => {
                         <h2 className='text-3xl font-bold mb-3 text-slate-600'>Category </h2>
                         <div className='py-2'>
                             {
-                                categorys.map((c,i) => <div className='flex justify-start items-center gap-2 py-1'>
+                                categories.map((c,i) => <div className='flex justify-start items-center gap-2 py-1'>
                                     <input type="checkbox" id={c} />
                                     <label className='text-slate-600 block cursor-pointer' htmlFor={c}>{c}</label>
                                 </div>)

@@ -1,4 +1,4 @@
-import { homeReducer } from "./reducers/homeReducer";
+import homeReducer from "./reducers/homeReducer";
 
 const rootReducer = {
     home : homeReducer,

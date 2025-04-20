@@ -19,16 +19,6 @@ const Header = ({categories}) => {
     const [categoryShow, setCategoryShow] = useState(true);
     const user = true
     const wishlist_count = 3
-    const categorys = [
-        'Mobiles',
-        'Laptops',
-        'Speakers',
-        'Top wear',
-        'Footwear',
-        'Watches',
-        'Home Decor',
-        'Smart Watches',
-    ]
 
     const [searchValue, setSearchValue] = useState('')
     const [category, setCategory] = useState('')
@@ -242,10 +232,11 @@ const Header = ({categories}) => {
                             <div className={`${categoryShow ? 'h-0' : 'h-[400px]'} overflow-hidden transition-all md-lg:relative duration-500 absolute z-[99999] bg-[#dbf3ed] w-full border-x`}>
                                 <ul className='py-2 text-slate-600 font-medium'>
                                     {
-                                        categorys.map((c,i) => {
+                                        categories.map((c,i) => {
                                             return (
                                             <li key={i} className='flex justify-start items-center gap-2 px-[24px] py-[6px]'>
-                                                <Link className='text-sm block'>{c}</Link>
+                                                <img src={c.image} className='w-[30px] h-[30px] rounded-full overflow-hidden' alt="" />
+                                                <Link className='text-sm block'>{c.name}</Link>
                                             </li>
                                             )
                                         })
@@ -264,8 +255,8 @@ const Header = ({categories}) => {
                                         <select onChange={(e) => setCategory(e.target.value)} className='w-[150px] text-slate-600 font-semibold bg-transparent px-2 h-full outline-0 border-none' name="" id="">
                                             <option value="">Select Category</option>
                                             {
-                                                categorys.map((c, i) => <option value={c}>
-                                                    {c}
+                                                categories.map((c, i) => <option key={i} value={c}>
+                                                    {c.name}
                                                 </option> )
                                             }
                                         </select>
