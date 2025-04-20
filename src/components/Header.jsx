@@ -12,7 +12,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io"; 
 
-const Header = () => {
+const Header = ({categories}) => {
     const {pathname} = useLocation()
      
     const [showShidebar, setShowShidebar] = useState(true);
