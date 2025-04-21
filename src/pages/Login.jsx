@@ -27,7 +27,7 @@ const Login = () => {
 
     return (
         <div>
-            <Header/>
+            <Header />
                 <div className='bg-slate-200 mt-4'>
                     <div className='w-full justify-center items-center p-10'>
                         <div className='grid grid-cols-2 w-[60%] mx-auto bg-white rounded-md'>
