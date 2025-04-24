@@ -8,8 +8,18 @@ import Shipping from './pages/Shipping';
 import Details from './pages/Details';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import { get_category } from './store/reducers/homeReducer';
+import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
 
 function App() {
+
+  const dispatch = useDispatch() // useDispatch() => Şunu Yap! anlamına gelir.
+
+  useEffect(() => { // useEffect sayfa render edildiğinde bir kere çalışır
+    dispatch(get_category()) // get_category apisiyle backendden kategorileri çeker. Bu aşamadan sonra diğer componentlara gidip 
+  }, [])
+
   return (
     <BrowserRouter>
     <Routes>

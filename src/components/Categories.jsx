@@ -2,8 +2,9 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import { Link } from 'react-router-dom';
 import 'react-multi-carousel/lib/styles.css'
+import { useDispatch, useSelector } from 'react-redux';
 
-const Categories = ({categories}) => {
+const Categories = () => {
 
     // const categories = [
     //     'Mobiles',
@@ -15,6 +16,8 @@ const Categories = ({categories}) => {
     //     'Home Decor',
     //     'Smart Watches',
     // ]
+
+    const {categories} = useSelector(state => state.home)
 
     const responsive = {
         superLargeDesktop: {

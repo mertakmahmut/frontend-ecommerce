@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
@@ -6,27 +6,43 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Range } from 'react-range';
 import {AiFillStar} from 'react-icons/ai'
 import {CiStar} from 'react-icons/ci'
-import Products from '../components/products/Products';
 import {BsFillGridFill} from 'react-icons/bs'
 import {FaThList} from 'react-icons/fa'
 import ShopProducts from '../components/products/ShopProducts';
 import Pagination from '../components/Pagination';
+import { useSelector, useDispatch } from 'react-redux';
+import { price_range_product } from '../store/reducers/homeReducer';
+import Products from '../components/products/Products';
 
 const Shops = () => {
 
-    const [filter, setFilter] = useState(true)
-    const categories = [
-        'Mobiles',
-        'Laptops',
-        'Speakers',
-        'Top wear',
-        'Footwear',
-        'Watches',
-        'Home Decor',
-        'Smart Watches'
-    ]
+    const dispatch = useDispatch()
+    const {categories, priceRange, latest_product} = useSelector(state => state.home)
 
-    const [state, setState] = useState({values: [50, 1500]})
+    useEffect(() => {
+        dispatch(price_range_product())
+    }, [])
+
+    useEffect(() => {
+        setState({
+            values : [priceRange.low, priceRange.high]
+        })
+    }, [priceRange])
+
+    const [filter, setFilter] = useState(true)  
+    // const categories = [
+    //     'Mobiles',
+    //     'Laptops',
+    //     'Speakers',
+    //     'Top wear',
+    //     'Footwear',
+    //     'Watches',
+    //     'Home Decor',
+    //     'Smart Watches'
+    // ]
+
+
+    const [state, setState] = useState({values: [priceRange.low, priceRange.high]})
     const [rating, setRating] = useState('')
     const [styles, setStyles] = useState('grid')
     const [parPage, setParPage] = useState(1)
@@ -66,9 +82,9 @@ const Shops = () => {
                         <h2 className='text-3xl font-bold mb-3 text-slate-600'>Category </h2>
                         <div className='py-2'>
                             {
-                                categories.map((c,i) => <div className='flex justify-start items-center gap-2 py-1'>
-                                    <input type="checkbox" id={c} />
-                                    <label className='text-slate-600 block cursor-pointer' htmlFor={c}>{c}</label>
+                                categories.map((c,i) => <div key={i} className='flex justify-start items-center gap-2 py-1'>
+                                    <input type="checkbox" id={c.name} />
+                                    <label className='text-slate-600 block cursor-pointer' htmlFor={c.name}>{c.name}</label>
                                 </div>)
                             }
                         </div>
@@ -77,8 +93,8 @@ const Shops = () => {
                             <h2 className='text-3xl font-bold mb-3 text-slate-600'>Price</h2>
                             <Range
                                 step={5}
-                                min={50}
-                                max={1500}
+                                min={priceRange.low}
+                                max={priceRange.high}
                                 values={(state.values)}
                                 onChange={(values) => setState({values})}
                                 renderTrack={({props,children}) => (
@@ -90,7 +106,7 @@ const Shops = () => {
                                     <div className='w-[15px] h-[15px] bg-[#059473] rounded-full' {...props} />
                     
                                 )} 
-                            />  
+                            /> 
                             <div>
                                 <span className='text-slate-800 font-bold text-lg'>${Math.floor(state.values[0])} - ${Math.floor(state.values[1])}</span>
 
@@ -151,7 +167,7 @@ const Shops = () => {
                         </div>
 
                         <div className='py-5 flex flex-col gap-4 md:hidden'>
-                            <Products title='Latest Product' />
+                            <Products title='Latest Product' products={latest_product} />
                         </div>
 
                     </div>
