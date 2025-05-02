@@ -19,6 +19,7 @@ const Header = () => {
 
     const {pathname} = useLocation()
     const {categories} = useSelector(state => state.home)
+    const {userInfo} = useSelector(state => state.auth)
      
     const [showShidebar, setShowShidebar] = useState(true);
     const [categoryShow, setCategoryShow] = useState(true);
@@ -67,9 +68,9 @@ const Header = () => {
                                 </div>
 
                                 {
-                                    user ? <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/dashboard'>
+                                    userInfo ? <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/dashboard'>
                                         <span> <FaUser/> </span>
-                                        <span>Mert Akmahmut </span>
+                                        <span>{userInfo.name} </span>
                                         </Link> : <Link to='/login' className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' >
                                         <span> <FaLock /> </span>
                                         <span>Login </span>
@@ -168,9 +169,9 @@ const Header = () => {
                                 </ul>
                             </div>
                             {
-                                user ? <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/dashboard'>
+                                userInfo ? <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/dashboard'>
                                     <span> <FaUser/> </span>
-                                    <span>Mert Akmahmut </span>
+                                    <span>{userInfo.name} </span>
                                     </Link> : <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/login'>
                                     <span> <FaLock /> </span>
                                     <span>Login </span>
