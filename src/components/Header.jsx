@@ -6,7 +6,7 @@ import { FaTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, redirect, useLocation, useNavigate } from 'react-router-dom';
 import { FaHeart } from "react-icons/fa6";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -20,7 +20,8 @@ const Header = () => {
     const {pathname} = useLocation()
     const {categories} = useSelector(state => state.home)
     const {userInfo} = useSelector(state => state.auth)
-     
+    const {cart_product_count} = useSelector(state => state.cart)
+
     const [showShidebar, setShowShidebar] = useState(true);
     const [categoryShow, setCategoryShow] = useState(true);
     const user = false
@@ -31,6 +32,14 @@ const Header = () => {
 
     const search = () => {
         navigate(`/products/search?category=${category}&&value=${searchValue}`)
+    }
+
+    const redirect_card_page = () => {
+        if (userInfo) {
+            navigate('/cart')
+        } else {
+            navigate('/login')
+        }
     }
 
     return (
@@ -133,13 +142,17 @@ const Header = () => {
                                             </div>
                                         </div>
 
-                                        <div className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
+                                        <div onClick={redirect_card_page} className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
                                             <span className='text-xl text-green-500'><FaCartShopping  /></span>
-                                            <div className='w-[20px] h-[20px] absolute bg-red-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px] '>
+                                            
                                                 {
-                                                    wishlist_count
+                                                    cart_product_count !== 0 && <div className='w-[20px] h-[20px] absolute bg-red-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px] '>
+                                                        {
+                                                            cart_product_count
+                                                        }
+                                                    </div> 
                                                 }
-                                            </div> 
+                                            
                                         </div> 
                                     </div> 
                                 </div> 

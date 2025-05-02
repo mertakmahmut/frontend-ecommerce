@@ -29,7 +29,7 @@ function App() {
       <Route path='/login' element= {<Login/>} />
       <Route path='/register' element= {<Register/>} />
       <Route path='/shops' element= {<Shops/>} />
-      <Route path='/card' element= {<Card/>} />
+      <Route path='/cart' element= {<Card/>} />
       <Route path='/shipping' element= {<Shipping/>} />
       <Route path='/products?' element= {<CategoryShop/>} />
       <Route path='/products/search?' element= {<SearchProducts/>} />
