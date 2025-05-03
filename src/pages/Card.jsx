@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoIosArrowForward } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { get_cart_products, delete_cart_product, messageClear } from '../store/reducers/cartReducer';
+import { get_cart_products, delete_cart_product, messageClear, quantity_inc } from '../store/reducers/cartReducer';
 import toast from 'react-hot-toast';
 
 const Card = () => {
@@ -42,6 +42,12 @@ const Card = () => {
         }
     },[successMessage])
 
+    const inc = (quantity, stock, cartId) => {
+        const temp = quantity + 1
+        if (temp <= stock) {
+            dispatch(quantity_inc(cartId))
+        }
+    }
 
     return (
         <div>
@@ -108,7 +114,7 @@ const Card = () => {
                                                                 <div className='flex bg-slate-200 h-[30px justify-center items-center text-xl]'>
                                                                     <div className='px-3 cursor-pointer'>-</div>
                                                                     <div className='px-3'>{pt.quantity}</div>
-                                                                    <div className='px-3 cursor-pointer'>+</div>
+                                                                    <div onClick={() => inc(pt.quantity, pt.productInfo.stock, pt._id)} className='px-3 cursor-pointer'>+</div>
 
                                                                 </div>
                                                                 <button onClick={() => dispatch(delete_cart_product(pt._id)) } className='px-5 py-[3px] bg-red-500 text-white'>Delete</button>

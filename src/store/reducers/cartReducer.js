@@ -40,6 +40,19 @@ export const delete_cart_product = createAsyncThunk(
     }
 )
 
+export const quantity_inc = createAsyncThunk(
+    'cart/quantity_inc',
+    async(cartId, { rejectWithValue, fulfillWithValue}) => {
+        try {
+            const {data} = await api.put(`/home/product/quantity-inc/${cartId}`)
+            // console.log(data)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
 export const cartReducer = createSlice({
     name : 'cart',
     initialState : {
@@ -83,7 +96,12 @@ export const cartReducer = createSlice({
         state.successMessage = payload.message;
     })
 
+    .addCase(quantity_inc.fulfilled, (state, { payload }) => {
+        state.successMessage = payload.message;
+    })
+
     }
+    
 })
 
 export const {messageClear} = cartReducer.actions
