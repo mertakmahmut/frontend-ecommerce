@@ -27,6 +27,19 @@ export const get_cart_products = createAsyncThunk(
     }
 )
 
+export const delete_cart_product = createAsyncThunk(
+    'cart/delete_cart_product',
+    async(cartId, { rejectWithValue, fulfillWithValue}) => {
+        try {
+            const {data} = await api.delete(`/home/product/delete-cart-product/${cartId}`)
+            // console.log(data)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
 export const cartReducer = createSlice({
     name : 'cart',
     initialState : {
@@ -64,6 +77,10 @@ export const cartReducer = createSlice({
         state.shipping_fee = payload.shipping_fee
         state.outofstock_products = payload.outOfStockProduct
         state.buy_product_item = payload.buy_product_item         
+    })
+
+    .addCase(delete_cart_product.fulfilled, (state, { payload }) => {
+        state.successMessage = payload.message;
     })
 
     }
