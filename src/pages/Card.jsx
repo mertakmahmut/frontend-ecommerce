@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoIosArrowForward } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { get_cart_products } from '../store/reducers/cartReducer';
 
 const Card = () => {
+
+    const dispatch = useDispatch()
+    const {userInfo} = useSelector(state => state.auth)
+
+    useEffect(() => {
+        dispatch(get_cart_products(userInfo.id))
+    }, [])
 
     const navigate = useNavigate()
     const card_products = [1, 2]
