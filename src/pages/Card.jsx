@@ -25,10 +25,10 @@ const Card = () => {
     const redirect = () => {
         navigate('/shipping', {
             state : {
-                products : [],
-                price : 500,
-                shipping_Fee : 40,
-                items : 2
+                products : cart_products,
+                price : price,
+                shipping_fee : shipping_fee,
+                items : buy_product_item
             }
         })
     }
