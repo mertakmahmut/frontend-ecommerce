@@ -38,7 +38,8 @@ export const cartReducer = createSlice({
         errorMessage : '',
         successMessage : '',
         shipping_fee : 0,
-        outofstock_products : []
+        outofstock_products : [],
+        buy_product_item : 0
     },
     reducers : {
         messageClear : (state, _) => {
@@ -55,6 +56,16 @@ export const cartReducer = createSlice({
         state.successMessage = payload.message;
         state.cart_product_count = state.cart_product_count + 1
     })
+
+    .addCase(get_cart_products.fulfilled, (state, { payload }) => {
+        state.cart_products = payload.cart_products;
+        state.price = payload.price
+        state.cart_product_count = payload.cart_product_count
+        state.shipping_fee = payload.shipping_fee
+        state.outofstock_products = payload.outOfStockProduct
+        state.buy_product_item = payload.buy_product_item         
+    })
+
     }
 })
 
