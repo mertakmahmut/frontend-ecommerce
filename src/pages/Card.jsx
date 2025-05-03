@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IoIosArrowForward } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { get_cart_products, delete_cart_product, messageClear, quantity_inc } from '../store/reducers/cartReducer';
+import { get_cart_products, delete_cart_product, messageClear, quantity_inc, quantity_dec } from '../store/reducers/cartReducer';
 import toast from 'react-hot-toast';
 
 const Card = () => {
@@ -46,6 +46,13 @@ const Card = () => {
         const temp = quantity + 1
         if (temp <= stock) {
             dispatch(quantity_inc(cartId))
+        }
+    }
+
+    const dec = (quantity, cartId) => {
+        const temp = quantity - 1
+        if (temp !=  0) {
+            dispatch(quantity_dec(cartId))
         }
     }
 
@@ -112,7 +119,7 @@ const Card = () => {
                                                             </div>
                                                             <div className='flex gap-2 flex-col'>
                                                                 <div className='flex bg-slate-200 h-[30px justify-center items-center text-xl]'>
-                                                                    <div className='px-3 cursor-pointer'>-</div>
+                                                                    <div onClick={() => dec(pt.quantity, pt._id)}  className='px-3 cursor-pointer'>-</div>
                                                                     <div className='px-3'>{pt.quantity}</div>
                                                                     <div onClick={() => inc(pt.quantity, pt.productInfo.stock, pt._id)} className='px-3 cursor-pointer'>+</div>
 
@@ -160,12 +167,12 @@ const Card = () => {
                                                                 </div>
                                                                 <div className='flex gap-2 flex-col'>
                                                                     <div className='flex bg-slate-200 h-[30px justify-center items-center text-xl]'>
-                                                                        <div className='px-3 cursor-pointer'>-</div>
+                                                                        <div onClick={() => dec(p.quantity, p._id)} className='px-3 cursor-pointer'>-</div>
                                                                         <div className='px-3'>{p.quantity}</div>
                                                                         <div className='px-3 cursor-pointer'>+</div>
     
                                                                     </div>
-                                                                    <button className='px-5 py-[3px] bg-red-500 text-white'>Delete</button>
+                                                                    <button onClick={() => dispatch(delete_cart_product(p._id))} className='px-5 py-[3px] bg-red-500 text-white'>Delete</button>
     
                                                                 </div>
     
