@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
@@ -14,13 +13,16 @@ import React, { useEffect } from 'react';
 import CategoryShop from './pages/CategoryShop';
 import SearchProducts from './pages/SearchProducts';
 import Payment from './pages/Payment';
+import Dashboard from './pages/Dashboard';
+import ProtectUser from './utils/ProtectUser';
+import Index from './components/dashboard/Index';
 
 function App() {
 
   const dispatch = useDispatch() // useDispatch() => Şunu Yap! anlamına gelir.
 
   useEffect(() => { // useEffect sayfa render edildiğinde bir kere çalışır
-    dispatch(get_category()) // get_category apisiyle backendden kategorileri çeker. Bu aşamadan sonra diğer componentlara gidip 
+    dispatch(get_category()) // get_category apisiyle backendden kategorileri çeker. Bu aşamadan sonra diğer componentlara gidip
   }, [])
 
   return (
@@ -36,6 +38,14 @@ function App() {
       <Route path='/products?' element= {<CategoryShop/>} />
       <Route path='/products/search?' element= {<SearchProducts/>} />
       <Route path='/product/details/:slug' element= {<Details/>} />
+
+      <Route path='/dashboard' element= {<ProtectUser/>} > 
+        <Route path='' element = {<Dashboard/>}>
+        <Route path='' element={<Index/>} />
+
+        </Route>
+      </Route>
+
 
     </Routes>
     </BrowserRouter>
