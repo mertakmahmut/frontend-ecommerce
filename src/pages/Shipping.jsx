@@ -47,7 +47,7 @@ const Shipping = () => {
             price,
             shipping_fee,
             items,
-            userId : userInfo,
+            userId : userInfo.id,
             shippingInfo : state,
             navigate
         }))
@@ -143,7 +143,7 @@ const Shipping = () => {
                                         <span>{state.phone} {state.address} {state.country} {state.city} {state.district} </span>
                                         <span onClick={() => setRes(false)} className='text-indigo-500 cursor-pointer'>Change</span>
                                     </p>
-                                    <p className=''text-slate-600 text-sm>Email to mert@gmail.com</p>
+                                    <p className=''text-slate-600 text-sm>Email to {userInfo.email}</p>
                                 </div>
                                 }
         
