@@ -24,7 +24,6 @@ const Header = () => {
 
     const [showShidebar, setShowShidebar] = useState(true);
     const [categoryShow, setCategoryShow] = useState(true);
-    const user = false
 
     const [searchValue, setSearchValue] = useState('')
     const [category, setCategory] = useState('')

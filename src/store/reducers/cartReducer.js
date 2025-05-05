@@ -77,6 +77,32 @@ export const add_to_wishlist = createAsyncThunk(
             return rejectWithValue(error.response.data)
         }
     }
+) 
+
+export const get_wishlist_products = createAsyncThunk(
+    'wishlist/get_wishlist_products',
+    async(userId, { rejectWithValue, fulfillWithValue}) => {
+        try {
+            const {data} = await api.get(`/home/product/get-wishlist-products/${userId}`)
+            console.log(data)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const remove_wishlist = createAsyncThunk(
+    'wishlist/remove_wishlist',
+    async(wishlistId, { rejectWithValue, fulfillWithValue}) => {
+        try {
+            const {data} = await api.delete(`/home/product/remove-wishlist/${wishlistId}`)
+            // console.log(data)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
 )
 
 export const cartReducer = createSlice({
@@ -85,7 +111,7 @@ export const cartReducer = createSlice({
         cart_products : [],
         cart_product_count : 0,
         wishlist_count : 0,
-        wishlist : [],
+        wishlists : [],
         price : 0,
         errorMessage : '',
         successMessage : '',
@@ -132,10 +158,24 @@ export const cartReducer = createSlice({
 
     .addCase(add_to_wishlist.rejected, (state, { payload }) => {
         state.errorMessage = payload.error;
-    }).addCase(add_to_wishlist.fulfilled, (state, { payload }) => {
+    })
+    .addCase(add_to_wishlist.fulfilled, (state, { payload }) => {
         state.successMessage = payload.message;
         state.wishlist_count = state.wishlist_count > 0 ? state.wishlist_count + 1 : 1   
     })
+
+    .addCase(get_wishlist_products.fulfilled, (state, { payload }) => {
+        state.wishlist_count = payload.wishlistCount;
+        state.wishlists = payload.wishlists;
+    })
+
+    .addCase(remove_wishlist.fulfilled, (state, { payload }) => { 
+        state.successMessage = payload.message; 
+        state.wishlists = state.wishlists.filter(p => p._id !== payload.wishlistId); 
+        state.wishlist_count = state.wishlist_count - 1
+    })
+
+    
 
     }
     
