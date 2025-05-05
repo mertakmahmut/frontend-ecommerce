@@ -5,7 +5,7 @@ import Rating from '../Rating';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { add_to_cart, messageClear } from '../../store/reducers/cartReducer';
+import { add_to_cart, add_to_wishlist, messageClear } from '../../store/reducers/cartReducer';
 import toast from 'react-hot-toast';
 
 
@@ -27,6 +27,20 @@ const FeatureProducts = ({products}) => {
         } else {
             navigate('/login')
         }
+    }
+
+    const add_wishlist = (product) => {
+        console.log(product)
+        dispatch(add_to_wishlist({
+            userId: userInfo.id,
+            productId: product._id,
+            name: product.name,
+            price: product.price,
+            image: product.images[0],
+            discount: product.discount,
+            rating: product.rating,
+            slug: product.slug
+        }))
     }
 
     useEffect(() => {
@@ -61,7 +75,7 @@ const FeatureProducts = ({products}) => {
                         }
                         <img className='sm:w-full w-full h-[240px]' src={p.images[0]} alt="" />
                         <ul className='flex transition-all duration-700 -bottom-10 justify-center items-center gap-2 absolute w-full group-hover:bottom-3'>
-                            <li className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#059473] hover:text-white hover:rotate-[720deg] transition-all'>
+                            <li onClick={() => add_wishlist(p)} className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#059473] hover:text-white hover:rotate-[720deg] transition-all'>
                             <FaRegHeart />
                             </li>
                             <Link to='/product/details/new' className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#059473] hover:text-white hover:rotate-[720deg] transition-all'>
