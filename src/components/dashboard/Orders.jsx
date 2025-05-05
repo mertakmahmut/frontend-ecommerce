@@ -1,8 +1,35 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { get_orders } from '../../store/reducers/orderReducer';
+// Kullanıcının sipariş geçmişini dinamik olarak listeleyen ve filtreleme yapılabilen bir dashboard bileşenidir.
 const Orders = () => {
-    const [state, setState] = useState('all')
+    const [state, setState] = useState('all') // Bu state, seçilen sipariş durumunu (delivery_status) temsil eder. Varsayılanı all. Select menüsünde değiştikçe güncellenir ve useEffect tetiklenir.
+
+    const dispatch = useDispatch()
+    const { orderId } = useParams()
+    const {userInfo} = useSelector(state => state.auth) // auth slice’ından oturum açmış kullanıcının bilgileri alınır.
+    const {myOrders} = useSelector(state => state.order) // order slice’ındaki myOrders, gelen sipariş listesini tutar.
+    const navigate = useNavigate()
+
+    useEffect(() => { // veri getirme - Sipariş durumu her değiştiğinde backend'e yeni istek atılır. 
+        dispatch(get_orders({status : state, customerId : userInfo.id}))
+    },[state])
+    
+    const redirect = (order) => {
+        let items = 0
+        for (let i = 0; i < order.length; i++) {
+            items = order.products[i].quantity + items;
+        }
+        navigate('/payment', {
+            state : {
+                price : order.price,
+                items,
+                orderId : order._id
+            }
+        })
+    }
+
     return (
         <div className='bg-white p-4 rounded-md'>
             <div className='flex justify-between items-center'>
@@ -29,31 +56,27 @@ const Orders = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className='bg-white border-b'>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>#344</td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>$233</td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>pending</td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>pending</td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>
-                                    <Link><span className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded'>View</span></Link>
+                            {myOrders.map((order, index) => (
+                                <tr key={index} className='bg-white border-b'>
+                                    <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>#{order._id}</td>
+                                    <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>${order.price}</td>
+                                    <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{order.payment_status}</td>
+                                    <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{order.delivery_status}</td>
+                                    <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>
+                                    <Link to={`/dashboard/order/details/${order._id}`}>
+                                        <span className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded'>
+                                        View
+                                        </span>
+                                    </Link>
 
-                                    <Link><span className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded'>Pay Now</span></Link> 
-                                </td> 
-                            </tr>
-
-                            <tr className='bg-white border-b'>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>#344</td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>$233</td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>pending</td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>pending</td>
-                                <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>
-                                    
-                                    <Link><span className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded'>View</span></Link>
-
-                                    <Link><span className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded'>Pay Now</span></Link> 
-                                </td> 
-                            </tr>
-
+                                    {
+                                        order.payment_status != 'paid' && <span onClick={() => redirect(order)} className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded cursor-pointer'>
+                                        Pay Now
+                                        </span>
+                                    }
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
 
                     </table>

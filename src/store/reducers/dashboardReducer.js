@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from '../../api/api';
 
 export const get_dashboard_index_data = createAsyncThunk(
-    'auth/get_dashboard_index_data',
+    'dashboard/get_dashboard_index_data',
     async(userId, { rejectWithValue, fulfillWithValue}) => {
         try {
             const {data} = await api.get(`/home/customer/get-dashboard-data/${userId}`) 
