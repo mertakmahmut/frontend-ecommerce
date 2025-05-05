@@ -7,7 +7,6 @@ const Orders = () => {
     const [state, setState] = useState('all') // Bu state, seçilen sipariş durumunu (delivery_status) temsil eder. Varsayılanı all. Select menüsünde değiştikçe güncellenir ve useEffect tetiklenir.
 
     const dispatch = useDispatch()
-    const { orderId } = useParams()
     const {userInfo} = useSelector(state => state.auth) // auth slice’ından oturum açmış kullanıcının bilgileri alınır.
     const {myOrders} = useSelector(state => state.order) // order slice’ındaki myOrders, gelen sipariş listesini tutar.
     const navigate = useNavigate()
