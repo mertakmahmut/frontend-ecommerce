@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { IoIosArrowForward } from 'react-icons/io';
 import Carousel from 'react-multi-carousel'; 
 import 'react-multi-carousel/lib/styles.css'
@@ -16,6 +16,8 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useDispatch } from 'react-redux';
+import { product_details } from '../store/reducers/homeReducer';
 
 const Details = () => {
 
@@ -25,6 +27,13 @@ const Details = () => {
     const stock = 3
 
     const [state, setState] = useState('reviews')
+
+    const dispatch = useDispatch()
+    const {slug} = useParams()
+
+    useEffect(() => {
+        dispatch(product_details(slug))
+    }, [slug])
  
     const responsive = {
         superLargeDesktop: {
