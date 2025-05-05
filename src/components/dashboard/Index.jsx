@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { RiShoppingCart2Fill } from "react-icons/ri";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import { get_dashboard_index_data } from '../../store/reducers/dashboardReducer';
 
 const Index = () => {
@@ -11,9 +11,25 @@ const Index = () => {
     const {userInfo} = useSelector(state => state.auth)
     const {recentOrders, totalOrder, pendingOrders, cancelledOrders} = useSelector(state => state.dashboard)
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         dispatch(get_dashboard_index_data(userInfo.id))
     }, [])
+
+    const redirect = (order) => {
+        let items = 0
+        for (let i = 0; i < order.length; i++) {
+            items = order.products[i].quantity + items;
+        }
+        navigate('/payment', {
+            state : {
+                price : order.price,
+                items,
+                orderId : order._id
+            }
+        })
+    }
 
     return (
         <div>
@@ -73,16 +89,17 @@ const Index = () => {
                                         <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{order.payment_status}</td>
                                         <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{order.delivery_status}</td>
                                         <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>
-                                        <Link>
+                                        <Link to={`/dashboard/order/details/${order._id}`}>
                                             <span className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded'>
                                             View
                                             </span>
                                         </Link>
-                                        <Link>
-                                            <span className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded'>
+
+                                        {
+                                            order.payment_status != 'paid' && <span onClick={() => redirect(order)} className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded cursor-pointer'>
                                             Pay Now
                                             </span>
-                                        </Link>
+                                        }
                                         </td>
                                     </tr>
                                 ))}
