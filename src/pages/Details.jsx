@@ -20,7 +20,7 @@ import { useDispatch } from 'react-redux';
 import { product_details } from '../store/reducers/homeReducer';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
-import { add_to_cart, messageClear } from '../store/reducers/cartReducer';
+import { add_to_cart, add_to_wishlist, messageClear } from '../store/reducers/cartReducer';
 
 const Details = () => {
 
@@ -117,13 +117,63 @@ const Details = () => {
 
     },[successMessage,errorMessage])
 
+    const add_wishlist = () => {
+        // console.log(product)
+        if (userInfo) {
+            dispatch(add_to_wishlist({
+                userId: userInfo.id,
+                productId: product._id,
+                name: product.name,
+                price: product.price,
+                image: product.images[0],
+                discount: product.discount,
+                rating: product.rating,
+                slug: product.slug
+            }))
+        } else {
+            navigate('/login')
+        }
+    }
+
+    const buynow = () => {
+        let price = 0;
+        if (product.discount != 0) {
+            price = product.price - Math.floor((product.price * product.discount) / 100)
+        } else {
+            price = product.price
+        }
+
+        const obj = [
+            {
+                sellerId: product.sellerId,
+                shopName: product.shopName,
+                price :  quantity * (price - Math.floor((price * 5) / 100)),
+                products : [
+                    {
+                        quantity,
+                        productInfo: product
+                    }
+                ]
+            }
+        ]
+        
+        navigate('/shipping',{
+            state: {
+                products : obj,
+                price: price * quantity,
+                shipping_fee : 20,
+                items: 1
+            }
+        }) 
+   }
+
     return (
         <div>
             <Header />
 
             <section className='bg-[url("http://localhost:3000/images/banner/shop.png")] h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'>
             <div className='absolute left-0 top-0 w-full h-full bg-[#2422228a]'>
-                <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
+                <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto '>
                     <div className='flex flex-col justify-center gap-1 items-center h-full w-full text-white'>
                         <h2 className='text-3xl font-bold'>Product Details </h2>
                         <div className='flex justify-center items-center gap-2 text-2xl w-full'>
@@ -228,7 +278,7 @@ const Details = () => {
                                 }
 
                                 <div>
-                                    <div className='h-[50px] w-[50px] flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-cyan-500/40 bg-cyan-500 text-white'>
+                                    <div onClick={add_wishlist} className='h-[50px] w-[50px] flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-cyan-500/40 bg-cyan-500 text-white'>
                                         <FaHeart />
                                     </div>
                                 </div>
@@ -264,10 +314,10 @@ const Details = () => {
 
                             <div className='flex gap-3'>
                                 {
-                                    stock ? <button className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#247462] text-white'>Buy Now</button> : ''
+                                    product.stock ? <button onClick={buynow} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#247462] text-white'>Şimdi Al</button> : ''
                                 }
                                 <Link to='#' className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-red-500/40 bg-red-500 text-white'>
-                                    Chat Seller
+                                    Soru Sor
                                 </Link>
                                 </div>
 
@@ -281,7 +331,7 @@ const Details = () => {
             </section>
 
             <section>
-            <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto pb-16'>
+            <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto pt-16'>
                 <div className='flex flex-wrap'>
                     <div className='w-[72%] md-lg:w-full'>
                         <div className='pr-4 md-lg:pr-0'>

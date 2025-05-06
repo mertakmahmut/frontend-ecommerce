@@ -30,17 +30,21 @@ const FeatureProducts = ({products}) => {
     }
 
     const add_wishlist = (product) => {
-        console.log(product)
-        dispatch(add_to_wishlist({
-            userId: userInfo.id,
-            productId: product._id,
-            name: product.name,
-            price: product.price,
-            image: product.images[0],
-            discount: product.discount,
-            rating: product.rating,
-            slug: product.slug
-        }))
+        // console.log(product)
+        if (userInfo) {
+            dispatch(add_to_wishlist({
+                userId: userInfo.id,
+                productId: product._id,
+                name: product.name,
+                price: product.price,
+                image: product.images[0],
+                discount: product.discount,
+                rating: product.rating,
+                slug: product.slug
+            }))
+        } else {
+            navigate('/login')
+        }
     }
 
     useEffect(() => {

@@ -40,6 +40,14 @@ const Header = () => {
         }
     }
 
+    const redirect_wishlist_page = () => {
+        if (userInfo) {
+            navigate('/dashboard/my-wishlist')
+        } else {
+            navigate('/login')
+        }
+    }
+
     return (
         <div className='w-full bg-white'>
             <div className='header-top bg-[#caddff] md-lg:hidden'>
@@ -130,7 +138,7 @@ const Header = () => {
 
                                 <div className='flex md-lg:hidden justify-center items-center gap-5'>
                                     <div className='flex justify-center gap-5'>
-                                        <div className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
+                                        <div onClick={redirect_wishlist_page} className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
                                             <span className='text-xl text-green-500'><FaHeart /></span>
                                             {
                                                 wishlist_count != 0 && <div className='w-[20px] h-[20px] absolute bg-red-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px] '>
