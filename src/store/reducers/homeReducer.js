@@ -95,10 +95,18 @@ export const homeReducer = createSlice({
         },
         product : {},
         relatedProducts : [],
-        moreProducts : []
+        moreProducts : [],
+        successMessage : '',
+        errorMessage : '',
+        totalReview : 0,
+        rating_review : [],
+        reviews : []
     },
     reducers : {
-
+        messageClear : (state, _) => {
+            state.errorMessage = ""
+            state.successMessage = ""
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -130,7 +138,12 @@ export const homeReducer = createSlice({
             state.moreProducts = payload.moreProducts;
         })
 
+        .addCase(customer_review.fulfilled, (state, { payload }) => {
+            state.successMessage = payload.message;
+        })
+
     }
 })
 
+export const {messageClear} = homeReducer.actions
 export default homeReducer.reducer
