@@ -342,7 +342,7 @@ const Details = () => {
 
                             <div>
                                 {
-                                    state == 'reviews' ? <Reviews/> :
+                                    state == 'reviews' ? <Reviews product = {product}/> :
                                     <p className='py-5 text-slate-600'>{product.description}</p>
                                 }
                             </div>
