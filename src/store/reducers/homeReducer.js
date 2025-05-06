@@ -80,7 +80,10 @@ export const homeReducer = createSlice({
         priceRange : {
             low : 0,
             high : 5
-        }
+        },
+        product : {},
+        relatedProducts : [],
+        moreProducts : []
     },
     reducers : {
 
@@ -107,6 +110,12 @@ export const homeReducer = createSlice({
             state.products = payload.products;
             state.totalProduct = payload.totalProduct;
             state.parPage = payload.parPage;
+        })
+
+        .addCase(product_details.fulfilled, (state, { payload }) => {
+            state.product = payload.product;
+            state.relatedProducts = payload.relatedProducts;
+            state.moreProducts = payload.moreProducts;
         })
 
     }

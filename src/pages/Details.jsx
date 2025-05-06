@@ -18,13 +18,17 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useDispatch } from 'react-redux';
 import { product_details } from '../store/reducers/homeReducer';
+import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 
 const Details = () => {
 
-    const images = [1,2,3,4,5,6]
+    // const images = [1,2,3,4,5,6]
     const [image, setImage] = useState()
-    const discount = 10
+    // const discount = 10
     const stock = 3
+
+    const { product, relatedProducts, moreProducts } = useSelector(state => state.home)
 
     const [state, setState] = useState('reviews')
 
@@ -66,6 +70,22 @@ const Details = () => {
         },
     }
 
+    const [quantity, setQuantity] = useState(1)
+
+    const inc = () => {
+        if (quantity >= product.stock) {
+            toast.error('Stokta yok')
+        } else {
+            setQuantity(quantity + 1)
+        }
+    }
+
+    const dec = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1)
+        }
+    }
+
     return (
         <div>
             <Header />
@@ -96,9 +116,9 @@ const Details = () => {
                         <div className='flex justify-start items-center text-md text-slate-600 w-full'>
                             <Link to='/'>Home</Link>
                             <span className='pt-1'><IoIosArrowForward /></span>
-                            <Link to='/'>Category</Link>
+                            <Link to='/'>{product.category}</Link>
                             <span className='pt-1'><IoIosArrowForward /></span>
-                            <span>Product Name </span>
+                            <span>{product.name} </span>
                         </div>
         
                     </div>
@@ -110,21 +130,21 @@ const Details = () => {
                     <div className='grid grid-cols-2 md-lg:grid-cols-1 gap-8'>
                         <div>
                             <div className='p-5 border'>
-                                <img className='h-[400px] w-full' src={image ? `http://localhost:3000/images/products/${image}.webp` : `http://localhost:3000/images/products/${images[2]}.webp`} />
+                                <img className='h-[400px] w-full' src={image ? image : product.images?.[0] } alt="" />
                             </div>
                             <div className='py-3'>
                                 {
-                                    images && <Carousel
+                                    product.images && <Carousel
                                     autoPlay={true}
                                     infinite={true} 
                                     responsive={responsive}
                                     transitionDuration={500}
                                 >
                                     {
-                                        images.map((img, i) => {
+                                        product.images.map((img, i) => {
                                         return (
                                             <div key={i} onClick={() => setImage(img)}>
-                                                <img className='h-[120px] cursor-pointer' src={`http://localhost:3000/images/products/${img}.webp`} alt="" /> 
+                                                <img className='h-[120px] cursor-pointer' src={img} alt="" /> 
                                             </div>
                                         )
                                         })
@@ -137,7 +157,7 @@ const Details = () => {
 
                         <div className='flex flex-col gap-5'>
                             <div className='text-3xl text-slate-600 font-bold'>
-                                <h3>Product Name </h3>
+                                <h3>{product.name} </h3>
                             </div>
                             <div className='flex justify-start items-center gap-4'>
                                 <div className='flex text-xl'>
@@ -148,25 +168,25 @@ const Details = () => {
  
                             <div className='text-2xl text-red-500 font-bold flex gap-3'>
                                 {
-                                    discount !== 0 ? <>
-                                    Price : <h2 className='line-through'>$500</h2>
-                                    <h2>${500 - Math.floor((500 * discount) / 100)} (-{discount}%) </h2>
+                                    product.discount !== 0 ? <>
+                                    Price : <h2 className='line-through'>{product.price}</h2>
+                                    <h2>${product.price - Math.floor((product.price * product.discount) / 100)} (-{product.discount}%) </h2>
                                     
-                                    </> : <h2> Price : $200 </h2>
+                                    </> : <h2> Price : ${product.price} </h2>
                                 }
                             </div>      
 
                             <div className='text-slate-600'>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores reiciendis pariatur delectus ab vel, atque reprehenderit distinctio perspiciatis aliquam impedit minus, adipisci obcaecati at quo eos possimus rerum. Praesentium, officia.</p>
+                                <p>{product?.description?.substring(0, 230)}{'...'} </p>
                             </div> 
 
                             <div className='flex gap-3 pb-10 border-b'>
                                 {
-                                    stock ? <>
+                                    product.stock ? <>
                                     <div className='flex bg-slate-200 h-[50px] justify-center items-center text-xl'>
-                                        <div className='px-6 cursor-pointer'>-</div>
-                                        <div className='px-6'>2</div>
-                                        <div className='px-6 cursor-pointer'>+</div>
+                                        <div onClick={dec} className='px-6 cursor-pointer'>-</div>
+                                        <div className='px-6'>{quantity}</div>
+                                        <div onClick={inc} className='px-6 cursor-pointer'>+</div>
                                     </div>
                                     <div>
                                         <button className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#059473] text-white'>Add To Card</button>
@@ -263,7 +283,7 @@ const Details = () => {
                                                 <div className='relative h-[270px]'>
                                                 <img className='w-full h-full' src={`http://localhost:3000/images/products/${p}.webp`} alt="" /> 
                                                 {
-                                                discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{discount}%
+                                                product.discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{product.discount}%
                                                 </div>
                                                 }
                                                 </div>
@@ -328,7 +348,7 @@ const Details = () => {
                                                 </div>
                                             </div>
                                             {
-                                            discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{discount}%
+                                            product.discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{product.discount}%
                                             </div>
                                             }
                                             
