@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IoIosArrowForward } from 'react-icons/io';
 import Carousel from 'react-multi-carousel'; 
 import 'react-multi-carousel/lib/styles.css'
@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 import { product_details } from '../store/reducers/homeReducer';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
+import { add_to_cart, messageClear } from '../store/reducers/cartReducer';
 
 const Details = () => {
 
@@ -29,6 +30,7 @@ const Details = () => {
     const stock = 3
 
     const { product, relatedProducts, moreProducts } = useSelector(state => state.home)
+    const { userInfo } = useSelector(state => state.auth)
 
     const [state, setState] = useState('reviews')
 
@@ -71,6 +73,8 @@ const Details = () => {
     }
 
     const [quantity, setQuantity] = useState(1)
+    const navigate = useNavigate()
+    const {successMessage, errorMessage} = useSelector(state => state.cart)
 
     const inc = () => {
         if (quantity >= product.stock) {
@@ -85,6 +89,33 @@ const Details = () => {
             setQuantity(quantity - 1)
         }
     }
+
+    const add_cart = () => {
+        // console.log(id)
+        if (userInfo) {
+            dispatch(add_to_cart({
+                userId : userInfo.id,
+                quantity,
+                productId : product._id
+            }))
+        } else {
+            navigate('/login')
+        }
+    }
+
+    useEffect(() => {
+
+        if (successMessage) {
+            toast.success(successMessage)
+            dispatch(messageClear())
+
+        }
+        if (errorMessage) {
+            toast.error(errorMessage)
+            dispatch(messageClear())
+        }
+
+    },[successMessage,errorMessage])
 
     return (
         <div>
@@ -177,7 +208,7 @@ const Details = () => {
                             </div>      
 
                             <div className='text-slate-600'>
-                                <p>{product?.description?.substring(0, 230)}{'...'} </p>
+                                <p>{product.description} </p>
                             </div> 
 
                             <div className='flex gap-3 pb-10 border-b'>
@@ -189,7 +220,7 @@ const Details = () => {
                                         <div onClick={inc} className='px-6 cursor-pointer'>+</div>
                                     </div>
                                     <div>
-                                        <button className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#059473] text-white'>Add To Card</button>
+                                        <button onClick={add_cart} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#059473] text-white'>Sepete Ekle</button>
                                     </div>
 
                                     
@@ -210,8 +241,8 @@ const Details = () => {
                                     <span>Share On</span> 
                                 </div> 
                                 <div className='flex flex-col gap-5'>
-                                    <span className={`text-${stock ? 'green' : 'red'}-500`}>
-                                        {stock ? `In Stock(${stock})` : 'Out Of Stock'}
+                                    <span className={`text-${product.stock ? 'green' : 'red'}-500`}>
+                                        {product.stock ? `In Stock(${product.stock})` : 'Out Of Stock'}
                                     </span>
 
                                     <ul className='flex justify-start items-center gap-3'>
@@ -262,7 +293,7 @@ const Details = () => {
                             <div>
                                 {
                                     state == 'reviews' ? <Reviews/> :
-                                    <p className='py-5 text-slate-600'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis aliquid ipsa odit fuga ipsam labore corporis, dolor quidem numquam. Doloribus pariatur est voluptatem laudantium, maiores porro ipsum et facilis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto aut sed, quisquam aliquid adipisci animi molestiae necessitatibus optio totam voluptate non voluptates voluptatem excepturi perspiciatis cupiditate, earum temporibus blanditiis impedit!</p>
+                                    <p className='py-5 text-slate-600'>{product.description}</p>
                                 }
                             </div>
 
@@ -273,25 +304,25 @@ const Details = () => {
                     <div className='w-[28%] md-lg:w-full'>
                         <div className='pl-4 md-lg:pl-0'>
                             <div className='px-3 py-2 text-slate-600 bg-slate-200'>
-                                <h2 className='font-bold'>From QuickCart</h2>
+                                <h2 className='font-bold'>From {product.shopName}</h2>
                             </div>
                             <div className='flex flex-col gap-5 mt-3 border p-3'>
                                 {
-                                    [1,2,3].map((p,i) => {
+                                    moreProducts.map((p,i) => {
                                         return (
                                             <Link className='block'>
                                                 <div className='relative h-[270px]'>
-                                                <img className='w-full h-full' src={`http://localhost:3000/images/products/${p}.webp`} alt="" /> 
+                                                <img className='w-full h-full' src={p.images[0]} alt="" />
                                                 {
                                                 product.discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{product.discount}%
                                                 </div>
                                                 }
                                                 </div>
-                                                <h2 className='text-slate-600 py-1 font-bold'>Product Name </h2>
+                                                <h2 className='text-slate-600 py-1 font-bold'>{p.name} </h2>
                                                 <div className='flex gap-2'>
-                                                    <h2 className='text-lg font-bold text-slate-600'>$434</h2>
+                                                    <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
                                                     <div className='flex items-center gap-2'>
-                                                        <Rating ratings={4.5}  />
+                                                        <Rating ratings={p.rating}  />
                                                     </div>
                                                 </div>
                                                 
@@ -336,19 +367,19 @@ const Details = () => {
                     > 
 
                     {
-                        [1,2,3,4,5,6].map((p, i) => {
+                        relatedProducts.map((p, i) => {
                             return (
 
                                 <SwiperSlide key={i}>
                                     <Link className='block'>
                                         <div className='relative h-[270px]'>
                                             <div className='w-full h-full'>
-                                                <img className='w-full h-full' src={`http://localhost:3000/images/products/${p}.webp`} alt="" />
+                                                <img className='w-full h-full' src={p.images[0]} alt="" />
                                                 <div className='absolute h-full w-full top-0 left-0 bg-[#000] opacity-25 hover:opacity-50 transition-all duration-500'> 
                                                 </div>
                                             </div>
                                             {
-                                            product.discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{product.discount}%
+                                            p.discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{p.discount}%
                                             </div>
                                             }
                                             
@@ -356,11 +387,11 @@ const Details = () => {
                                         </div>
 
                                         <div className='p-4 flex flex-col gap-1'>
-                                            <h2 className='text-slate-600 text-lg font-bold'>Product Name </h2>
+                                            <h2 className='text-slate-600 text-lg font-bold'>{p.name} </h2>
                                             <div className='flex justify-start items-center gap-3'>
-                                                <h2 className='text-lg font-bold text-slate-600'>$434</h2>
+                                                <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
                                                 <div className='flex'>
-                                                    <Rating ratings={4.5}  />
+                                                    <Rating ratings={p.rating} />
                                                 </div>
                                             </div>
                                         </div>
