@@ -29,7 +29,7 @@ const Details = () => {
     // const discount = 10
     const stock = 3
 
-    const { product, relatedProducts, moreProducts } = useSelector(state => state.home)
+    const { product, relatedProducts, moreProducts, totalReview } = useSelector(state => state.home)
     const { userInfo } = useSelector(state => state.auth)
 
     const [state, setState] = useState('reviews')
@@ -115,7 +115,7 @@ const Details = () => {
             dispatch(messageClear())
         }
 
-    },[successMessage,errorMessage])
+    },[successMessage,errorMessage]) 
 
     const add_wishlist = () => {
         // console.log(product)
@@ -244,7 +244,7 @@ const Details = () => {
                                 <div className='flex text-xl'>
                                     <Rating ratings={4.5} />
                                 </div>
-                                <span className='text-green-500'>(24 reviews)</span> 
+                                <span className='text-green-500'>({totalReview} reviews)</span> 
                             </div>
  
                             <div className='text-2xl text-red-500 font-bold flex gap-3'>
@@ -259,6 +259,7 @@ const Details = () => {
 
                             <div className='text-slate-600'>
                                 <p>{product.description} </p>
+                                <p className='text-slate-600 py-1 font-bold'>Shop Name : {product.shopName}</p>
                             </div> 
 
                             <div className='flex gap-3 pb-10 border-b'>
@@ -316,7 +317,7 @@ const Details = () => {
                                 {
                                     product.stock ? <button onClick={buynow} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#247462] text-white'>Şimdi Al</button> : ''
                                 }
-                                <Link to='#' className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-red-500/40 bg-red-500 text-white'>
+                                <Link to = {`/dashboard/chat/${product.sellerId}`} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-red-500/40 bg-red-500 text-white'>
                                     Soru Sor
                                 </Link>
                                 </div>
