@@ -156,15 +156,19 @@ const Details = () => {
                 ]
             }
         ]
+        if (userInfo.id) {
+            navigate('/shipping',{
+                state: {
+                    products : obj,
+                    price: price * quantity,
+                    shipping_fee : 20,
+                    items: 1
+                }
+            }) 
+        } else {
+            navigate('/login')
+        }
         
-        navigate('/shipping',{
-            state: {
-                products : obj,
-                price: price * quantity,
-                shipping_fee : 20,
-                items: 1
-            }
-        }) 
    }
 
     return (
