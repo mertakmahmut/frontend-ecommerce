@@ -1,19 +1,31 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from '../../api/api';
 
-// export const customer_register = createAsyncThunk(
-//     'auth/customer_register',
-//     async(info, { rejectWithValue, fulfillWithValue}) => {
-//         try {
-//             const {data} = await api.post('/customer/customer-register', info)
-//             localStorage.setItem('customerToken', data.token) 
-//             // console.log(data)
-//             return fulfillWithValue(data)
-//         } catch (error) {
-//             return rejectWithValue(error.response.data)
-//         }
-//     }
-// )
+export const add_friend = createAsyncThunk(
+    'chat/add_friend',
+    async(info, { rejectWithValue, fulfillWithValue}) => {
+        try {
+            const {data} = await api.post('/chat/customer/add-customer-friend', info) 
+            // console.log(data)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+export const send_message = createAsyncThunk(
+    'chat/send_message',
+    async(info, { rejectWithValue, fulfillWithValue}) => {
+        try {
+            const {data} = await api.post('/chat/customer/send-message-to-seller', info) 
+            // console.log(data)
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
 
 export const chatReducer = createSlice({
     name : 'chat',
@@ -31,13 +43,12 @@ export const chatReducer = createSlice({
         }
     },
     extraReducers: (builder) => {
-        // builder
-        // .addCase(customer_register.fulfilled, (state, { payload }) => {
-        //     const userInfo = decodeToken(payload.token)
-        //     state.successMessage = payload.message;
-        //     state.loader = false;
-        //     state.userInfo = userInfo
-        // })
+        builder
+        .addCase(add_friend.fulfilled, (state, { payload }) => {
+            state.my_friends = payload.MyFriends;
+            state.currentFd = payload.currentFd;
+            state.fb_messages = payload.messages
+        })
 
     }
 })
