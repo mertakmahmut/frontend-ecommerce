@@ -50,6 +50,20 @@ export const chatReducer = createSlice({
             state.fb_messages = payload.messages
         })
 
+        .addCase(send_message.fulfilled, (state, { payload }) => { 
+            let tempFriends = state.my_friends
+            let index = tempFriends.findIndex(f => f.fdId === payload.message.receiverId)
+            while (index > 0) {
+                let temp = tempFriends[index]
+                tempFriends[index] = tempFriends[index - 1]
+                tempFriends[index - 1] = temp
+                index--
+            }            
+            state.my_friends = tempFriends;
+            state.fb_messages = [...state.fb_messages, payload.message];
+            state.successMessage = 'Mesajınız Başarıyla Gönderildi';
+        })
+
     }
 })
 
