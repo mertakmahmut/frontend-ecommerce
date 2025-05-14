@@ -5,9 +5,9 @@ import { IoSend } from 'react-icons/io5'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom'
-import io from 'socket.io-client'
 import { add_friend, messageClear, send_message, updateMessage } from '../../store/reducers/chatReducer';
 import toast from 'react-hot-toast';
+import io from 'socket.io-client'
 
 const socket = io(('http://localhost:1000'))
 

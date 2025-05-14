@@ -7,7 +7,7 @@ import Stripe from '../components/products/Stripe';
 const Payment = () => {
 
     const { state: {price,items,orderId}} = useLocation()
-    const [paymentMethod, setPaymentMethod] = useState('stripe')  
+    const [paymentMethod, setPaymentMethod] = useState('eft')  
 
     return (
         <div>
@@ -18,45 +18,45 @@ const Payment = () => {
                         <div className='w-7/12 md:w-full'>
                             <div className='pr-2 md:pr-0'>
                                 <div className='flex flex-wrap'>
-                                    <div onClick={() => setPaymentMethod('stripe')} className={`w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'stripe' ? 'bg-white':'bg-slate-100'} `}>
+                                    <div onClick={() => setPaymentMethod('eft')} className={`w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'eft' ? 'bg-white':'bg-slate-100'} `}>
                                         <div className='flex flex-col gap-[3px] justify-center items-center'>
-                                            <img src="http://localhost:3000/images/payment/stripe.png" alt="" />
+                                            <img src="http://localhost:3000/images/payment/efthavale.jpeg" alt="" />
                                         </div>
-                                        <span className='text-slate-600'>Stripe</span>
-                                    </div>   
+                                        <span className='text-slate-600'>Havale/EFT</span>
+                                    </div>  
 
                                     <div onClick={() => setPaymentMethod('cod')} className={`w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'cod' ? 'bg-white':'bg-slate-100'} `}>
                                         <div className='flex flex-col gap-[3px] justify-center items-center'>
                                             <img src="http://localhost:3000/images/payment/cod.jpg" alt="" />
                                         </div>
                                         <span className='text-slate-600'>COD</span>
-                                    </div>
+                                    </div>   
 
-                                    <div onClick={() => setPaymentMethod('eft')} className={`w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'eft' ? 'bg-white':'bg-slate-100'} `}>
+                                    <div onClick={() => setPaymentMethod('stripe')} className={`w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'stripe' ? 'bg-white':'bg-slate-100'} `}>
                                         <div className='flex flex-col gap-[3px] justify-center items-center'>
-                                            <img src="http://localhost:3000/images/payment/efthavale.jpeg" alt="" />
+                                            <img src="http://localhost:3000/images/payment/stripe.png" alt="" />
                                         </div>
-                                        <span className='text-slate-600'>Havale/EFT</span>
-                                    </div>           
+                                        <span className='text-slate-600'>Stripe</span>
+                                    </div>      
 
                                 </div> 
                             </div>
 
                             {
                                 paymentMethod == 'stripe' && <div>
-                                    <Stripe/>
+                                    <Stripe orderId = {orderId} price = {price}/>
                                 </div>
                             }
 
                             {
                                 paymentMethod == 'cod' && <div className='w-full px-4 py-8 bg-white shadow-sm'>
-                                    <button className='px-10 py-[6px] rounded-sm hover:shadow-green-500/20 hover:shadow-lg bg-[#059473] text-white'>Pay Now</button>
+                                    <button className='px-10 py-[6px] rounded-sm hover:shadow-green-500/20 hover:shadow-lg bg-[#059473] text-white'>Ödeme Başlat</button>
                                 </div>
                             }
 
                             {
                                 paymentMethod == 'eft' && <div className='w-full px-4 py-8 bg-white shadow-sm'>
-                                    <button className='px-10 py-[6px] rounded-sm hover:shadow-green-500/20 hover:shadow-lg bg-[#059473] text-white'>Pay Now</button>
+                                    <button className='px-10 py-[6px] rounded-sm hover:shadow-green-500/20 hover:shadow-lg bg-[#059473] text-white'>Ödeme Başlat</button>
                                 </div>
                             }
 
