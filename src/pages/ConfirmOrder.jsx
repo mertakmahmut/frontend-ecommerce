@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js'
+import { loadStripe } from '@stripe/stripe-js';
 import error from '../assets/error.png'
 import success from '../assets/success.png'
 import { Link } from 'react-router-dom';
@@ -76,10 +76,10 @@ const ConfirmOrder = () => {
             {
                 (message === 'failed' || message === 'processing') ? <>
                 <img src={error} alt="" />
-                <Link className='px-5 py-2 bg-green-500 rounded-sm text-white' to="/dashboard/my-orders">Back to Dashboard </Link>
+                <Link className='px-5 py-2 bg-green-500 rounded-sm text-white' to="/dashboard/my-orders">Satıcı Paneline Geri Dön </Link>
                 </> : message === 'succeeded' ? loader ? <FadeLoader/> : <>
                 <img src={success} alt="" />
-                <Link className='px-5 py-2 bg-green-500 rounded-sm text-white' to="/dashboard/my-orders">Back to Dashboard </Link>
+                <Link className='px-5 py-2 bg-green-500 rounded-sm text-white' to="/dashboard/my-orders">Satıcı Paneline Geri Dön </Link>
                 </> : <FadeLoader/> 
             }
             

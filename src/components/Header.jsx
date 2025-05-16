@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdEmail } from "react-icons/md";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaFacebookF, FaList, FaLock, FaUser } from "react-icons/fa";
@@ -12,9 +12,11 @@ import { FaCartShopping } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io"; 
 import { useDispatch, useSelector } from 'react-redux';
+import { get_cart_products, get_wishlist_products } from '../store/reducers/cartReducer';
 
 const Header = () => {
 
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const {pathname} = useLocation()
@@ -39,6 +41,13 @@ const Header = () => {
             navigate('/login')
         }
     }
+
+    useEffect(() => {
+        if (userInfo) {
+            dispatch(get_cart_products(userInfo.id))
+            dispatch(get_wishlist_products(userInfo.id))
+        }  
+    },[userInfo])
 
     const redirect_wishlist_page = () => {
         if (userInfo) {
@@ -138,7 +147,7 @@ const Header = () => {
 
                                 <div className='flex md-lg:hidden justify-center items-center gap-5'>
                                     <div className='flex justify-center gap-5'>
-                                        <div onClick={redirect_wishlist_page} className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
+                                        <div onClick={() => navigate(userInfo ? '/dashboard/my-wishlist' : '/login') } className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
                                             <span className='text-xl text-green-500'><FaHeart /></span>
                                             {
                                                 wishlist_count != 0 && <div className='w-[20px] h-[20px] absolute bg-red-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px] '>
