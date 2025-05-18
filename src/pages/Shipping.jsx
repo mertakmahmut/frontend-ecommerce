@@ -61,13 +61,14 @@ const Shipping = () => {
                 <div className='absolute left-0 top-0 w-full h-full bg-[#2422228a]'>
                     <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
                         <div className='flex flex-col justify-center gap-1 items-center h-full w-full text-white'>
-                            <h2 className='text-3xl font-bold'>Shipping Page </h2>
+                            <h2 className='text-3xl font-bold'>
+                                Gönderim Bilgileri </h2>
                             <div className='flex justify-center items-center gap-2 text-2xl w-full'>
-                                <Link to='/'>Home</Link>
+                                <Link to='/'>Anasayfa</Link>
                                 <span className='pt-1'>
                                     <IoIosArrowForward />
                                 </span>
-                                <span>Shipping</span>
+                                <span>Gönderim</span>
                             </div>
                         </div>
     
@@ -83,51 +84,52 @@ const Shipping = () => {
                     <div className='w-[67%] md-lg:w-full'>
                         <div className='flex flex-col gap-3'>
                             <div className='bg-white p-6 shadow-sm rounded-md'>
-                                <h2 className='text-slate-600 font-bold pb-3'>Shipping Information </h2>
+                                <h2 className='text-slate-600 font-bold pb-3'>Gönderim Adresi </h2>
                                 {
                                     !res && <>
                                     <form onSubmit={save}>
                                     <div className='flex md:flex-col md:gap-2 w-full gap-5 text-slate-600'>
                                         <div className='flex flex-col gap-1 mb-2 w-full'>
-                                            <label htmlFor="name"> Name </label>
-                                            <input onChange={inputHandle} value={state.name} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="name" id="name" placeholder='Name' /> 
+                                            <label htmlFor="name"> İsim </label>
+                                            <input onChange={inputHandle} value={state.name} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="name" id="name" placeholder='İsim' /> 
                                         </div>
                             
                                         <div className='flex flex-col gap-1 mb-2 w-full'>
-                                            <label htmlFor="address"> Address </label>
-                                            <input onChange={inputHandle} value={state.address} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="address" id="address" placeholder='Address' /> 
+                                            <label htmlFor="address"> Adres </label>
+                                            <input onChange={inputHandle} value={state.address} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="address" id="address" placeholder='Adres' /> 
                                         </div>                    
                                     </div>
                                     <div className='flex md:flex-col md:gap-2 w-full gap-5 text-slate-600'>
                                         <div className='flex flex-col gap-1 mb-2 w-full'>
-                                            <label htmlFor="phone"> Phone </label>
-                                            <input onChange={inputHandle} value={state.phone} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="phone" id="phone" placeholder='Phone' /> 
+                                            <label htmlFor="phone"> Telefon </label>
+                                            <input onChange={inputHandle} value={state.phone} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="phone" id="phone" placeholder='Telefon' /> 
                                         </div>
                             
                                         <div className='flex flex-col gap-1 mb-2 w-full'>
-                                            <label htmlFor="post"> Post </label>
-                                            <input onChange={inputHandle} value={state.post} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="post" id="post" placeholder='Post' /> 
+                                            <label htmlFor="post"> Posta Kodu </label>
+                                            <input onChange={inputHandle} value={state.post} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="post" id="post" placeholder='Posta Kodu' /> 
                                         </div>                    
                                     </div>
                                     <div className='flex md:flex-col md:gap-2 w-full gap-5 text-slate-600'>
                                         <div className='flex flex-col gap-1 mb-2 w-full'>
-                                            <label htmlFor="country"> Country </label>
-                                            <input onChange={inputHandle} value={state.country} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="country" id="country" placeholder='Country' /> 
+                                            <label htmlFor="country"> 
+                                                Ülke </label>
+                                            <input onChange={inputHandle} value={state.country} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="country" id="country" placeholder='Ülke' /> 
                                         </div>
                             
                                         <div className='flex flex-col gap-1 mb-2 w-full'>
-                                            <label htmlFor="city"> City </label>
-                                            <input onChange={inputHandle} value={state.city} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="city" id="city" placeholder='City' /> 
+                                            <label htmlFor="city"> Şehir </label>
+                                            <input onChange={inputHandle} value={state.city} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="city" id="city" placeholder='Şehir' /> 
                                         </div>                    
                                     </div>
                                     <div className='flex md:flex-col md:gap-2 w-full gap-5 text-slate-600'>
                                         <div className='flex flex-col gap-1 mb-2 w-full'>
-                                            <label htmlFor="district"> District </label>
-                                            <input onChange={inputHandle} value={state.district} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="district" id="district" placeholder='District' /> 
+                                            <label htmlFor="district"> İlçe </label>
+                                            <input onChange={inputHandle} value={state.district} type="text" className='w-full px-3 py-2 border border-slate-200 outline-none focus:border-green-500 rounded-md' name="district" id="district" placeholder='İlçe' /> 
                                         </div>
                             
                                         <div className='flex flex-col gap-1 mb-2 w-full'>
-                                            <button className='px-3 mt-8 py-[6px] rounded-sm hover:shadow-green-500/50 hover:shadow-lg bg-green-500 text-white'>Save Change</button> 
+                                            <button className='px-3 mt-8 py-[6px] rounded-sm hover:shadow-green-500/50 hover:shadow-lg bg-green-500 text-white'>Değişiklikleri Kaydet</button> 
                                         </div>                    
                                     </div>
                 
@@ -137,13 +139,13 @@ const Shipping = () => {
 
                                 {
                                     res && <div className='flex flex-col gap-1'>
-                                    <h2 className='text-slate-600 font-semibold pb-2'>Deliver To {state.name}</h2>
+                                    <h2 className='text-slate-600 font-semibold pb-2'>Alıcı {state.name}</h2>
                                     <p>
                                         <span className='bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2 py-1 rounded'>Home</span>
                                         <span>{state.phone} {state.address} {state.country} {state.city} {state.district} </span>
-                                        <span onClick={() => setRes(false)} className='text-indigo-500 cursor-pointer'>Change</span>
+                                        <span onClick={() => setRes(false)} className='text-indigo-500 cursor-pointer'>Değiştir</span>
                                     </p>
-                                    <p className=''text-slate-600 text-sm>Email to {userInfo.email}</p>
+                                    <p className=''text-slate-600 text-sm>E-posta {userInfo.email}</p>
                                 </div>
                                 }
         
@@ -164,15 +166,15 @@ const Shipping = () => {
                                                         <img className='w-[80px] h-[80px]' src={pt.productInfo.images[0]} alt="" />
                                                         <div className='pr-4 text-slate-600'>
                                                             <h2 className='text-md font-semibold'>{pt.productInfo.name} </h2>
-                                                            <span className='text-sm'>Brand: {pt.productInfo.brand}</span>
+                                                            <span className='text-sm'>Marka: {pt.productInfo.brand}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                 
                                                 <div className='flex justify-between w-5/12 sm:w-full sm:mt-3'>
                                                     <div className='pl-4 sm:pl-0'>
-                                                        <h2 className='text-lg text-orange-500'>${pt.productInfo.price - Math.floor((pt.productInfo.price * pt.productInfo.discount) / 100)}</h2>
-                                                        <p className='line-through'>${pt.productInfo.price}</p>
+                                                        <h2 className='text-lg text-orange-500'>₺{pt.productInfo.price - Math.floor((pt.productInfo.price * pt.productInfo.discount) / 100)}</h2>
+                                                        <p className='line-through'>₺{pt.productInfo.price}</p>
                                                         <p>-{pt.productInfo.discount}%</p>
                                                     </div>
 
@@ -195,26 +197,26 @@ const Shipping = () => {
                             <div className='pl-3 md-lg:pl-0 md-lg:mt-5'>
                                 {
                                     <div className='bg-white p-3 text-slate-600 flex flex-col gap-3'>
-                                        <h2 className='text-xl font-bold'>Order Summary</h2>
+                                        <h2 className='text-xl font-bold'>Sipariş Özeti</h2>
                                         <div className='flex justify-between items-center'>
-                                            <span>Items Total ({items}) </span>
-                                            <span>${price} </span>
+                                            <span>Ürünler Toplam ({items}) </span>
+                                            <span>₺{price} </span>
                                         </div>
                                         <div className='flex justify-between items-center'>
-                                            <span>Delivery Fee </span>
-                                            <span>${shipping_fee} </span>
+                                            <span>Kargo Ücreti </span>
+                                            <span>₺{shipping_fee} </span>
                                         </div>
                                         <div className='flex justify-between items-center'>
-                                            <span>Total Payment </span>
-                                            <span>${price + shipping_fee} </span>
+                                            <span>Toplam Tutar </span>
+                                            <span>₺{price + shipping_fee} </span>
                                         </div>
 
                                         <div className='flex justify-between items-center'>
-                                            <span>Total</span>
-                                            <span className='text-lg text-[#059473]'>${price + shipping_fee} </span>
+                                            <span>Toplam</span>
+                                            <span className='text-lg text-[#059473]'>₺{price + shipping_fee} </span>
                                         </div>
                                         <button onClick={placeOrder} disabled= {res ? false : true} className={`px-5 py-[6px] rounded-sm hover:shadow-red-500/50 hover:shadow-lg ${res ? 'bg-red-500' : 'bg-red-300'}  text-sm text-white uppercase`}>
-                                            Place Order
+                                            Ödeme Yap
                                         </button>
 
                                     </div>

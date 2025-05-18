@@ -49,27 +49,27 @@ const Dashboard = () => {
                             <ul className='py-2 text-slate-600 px-4'> 
                                 <li className='flex justify-start items-center gap-2 py-2'>
                                     <span className='text-xl'><IoIosHome /></span>
-                                    <Link to='/dashboard' className='block' >Dashboard </Link>
+                                    <Link to='/dashboard' className='block' >Hesabım </Link>
                                 </li>
                                 <li className='flex justify-start items-center gap-2 py-2'>
                                     <span className='text-xl'><FaBorderAll/></span>
-                                    <Link to='/dashboard/my-orders' className='block' >My Orders </Link>
+                                    <Link to='/dashboard/my-orders' className='block' >Siparişlerim </Link>
                                 </li>
                                 <li className='flex justify-start items-center gap-2 py-2'>
                                     <span className='text-xl'><FaHeart/></span>
-                                    <Link to='/dashboard/my-wishlist' className='block' >Wishlist </Link>
+                                    <Link to='/dashboard/my-wishlist' className='block' >İstek Listem </Link>
                                 </li>
                                 <li className='flex justify-start items-center gap-2 py-2'>
                                     <span className='text-xl'><IoChatbubbleEllipsesSharp/></span>
-                                    <Link to='/dashboard/chat' className='block' >Chat  </Link>
+                                    <Link to='/dashboard/chat' className='block' >Sohbetler  </Link>
                                 </li>
                                 <li className='flex justify-start items-center gap-2 py-2'>
                                     <span className='text-xl'><RiLockPasswordLine/></span>
-                                    <Link to='/dashboard/change-password' className='block' >Change Password  </Link>
+                                    <Link to='/dashboard/change-password' className='block' >Şifreyi Değiştir  </Link>
                                 </li>
                                 <li onClick={logout} className='flex justify-start items-center gap-2 py-2 cursor-pointer'>
                                     <span className='text-xl'><IoMdLogOut/></span>
-                                    <div className='block' >Logout </div>
+                                    <div className='block' >Çıkış Yap </div>
                                 </li> 
 
                             </ul> 

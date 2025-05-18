@@ -65,12 +65,12 @@ const Header = () => {
                         <ul className='flex justify-start items-center gap-8 font-semibold text-black'>
                             <li className='flex relative justify-center items-center gap-2 text-sm after:absolute after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px]'>
                                 <span><MdEmail /></span>
-                                <span>support@gmail.com</span>
+                                <span>yonetici@yonetici.com</span>
                             </li>
 
                             <li className='flex relative justify-center items-center gap-2 text-sm '>
                                 <span><IoMdPhonePortrait  /></span>
-                                <span>+90 (555) 444 3333</span>
+                                <span>+90 (111) 111 1111</span>
                             </li> 
                         </ul>
 
@@ -82,14 +82,14 @@ const Header = () => {
                                     <a href="#"><FaLinkedin /></a>
                                     <a href="#"><FaGithub /> </a> 
                                 </div>
-                                <div className='flex group cursor-pointer text-slate-800 text-sm justify-center items-center gap-1 relative after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px] after:absolute before:absolute before:h-[18px] before:bg-[#afafaf] before:w-[1px] before:-left-[20px]'>
+                                {/* <div className='flex group cursor-pointer text-slate-800 text-sm justify-center items-center gap-1 relative after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px] after:absolute before:absolute before:h-[18px] before:bg-[#afafaf] before:w-[1px] before:-left-[20px]'>
                                     <img src="http://localhost:3000/images/language.png" alt="" />
                                     <span><IoMdArrowDropdown /></span>
                                     <ul className='absolute invisible transition-all top-12 rounded-sm duration-200 text-white p-2 w-[100px] flex flex-col gap-3 group-hover:visible group-hover:top-6 group-hover:bg-black z-10'>
                                     <li>Türkçe</li>
                                     <li>English</li>
                                     </ul>
-                                </div>
+                                </div> */}
 
                                 {
                                     userInfo ? <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/dashboard'>
@@ -97,7 +97,7 @@ const Header = () => {
                                         <span>{userInfo.name} </span>
                                         </Link> : <Link to='/login' className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' >
                                         <span> <FaLock /> </span>
-                                        <span>Login </span>
+                                        <span>Giriş Yap </span>
                                         </Link>
                                 }
  
@@ -127,20 +127,20 @@ const Header = () => {
                             <div className='flex justify-between md-lg:justify-center items-center flex-wrap pl-8'>
                                 <ul className='flex justify-start items-start gap-8 text-sm font-bold uppercase md-lg:hidden'>
                                     <li>
-                                        <Link className={`p-2 block ${pathname === '/' ?  'text-[#059473]' : 'text-slate-600' } `} >Home</Link>
+                                        <Link className={`p-2 block ${pathname === '/' ?  'text-[#059473]' : 'text-slate-600' } `} >Anasayfa</Link>
                                     </li>
 
                                     <li>
-                                        <Link to='/shops' className={`p-2 block ${pathname === '/shops' ?  'text-[#059473]' : 'text-slate-600' } `} >Shop</Link>
+                                        <Link to='/shops' className={`p-2 block ${pathname === '/shops' ?  'text-[#059473]' : 'text-slate-600' } `} >Mağaza</Link>
                                     </li>
                                     <li>
                                         <Link className={`p-2 block ${pathname === '/blog' ?  'text-[#059473]' : 'text-slate-600' } `} >Blog</Link>
                                     </li>
                                     <li>
-                                        <Link className={`p-2 block ${pathname === '/about' ?  'text-[#059473]' : 'text-slate-600' } `} >About Us</Link>
+                                        <Link className={`p-2 block ${pathname === '/about' ?  'text-[#059473]' : 'text-slate-600' } `} >Hakkımızda</Link>
                                     </li>
                                     <li>
-                                        <Link className={`p-2 block ${pathname === '/contact' ?  'text-[#059473]' : 'text-slate-600' } `} >Contact Us</Link>
+                                        <Link className={`p-2 block ${pathname === '/contact' ?  'text-[#059473]' : 'text-slate-600' } `} >İletişim</Link>
                                     </li>
 
                                 </ul>
@@ -189,21 +189,21 @@ const Header = () => {
                             <img className='h-[50px]' src="http://localhost:3000/images/adminLogo.png" alt="" />
                         </Link>
                         <div className='flex justify-start items-center gap-10'>
-                            <div className='flex group cursor-pointer text-slate-800 text-sm justify-center items-center gap-1 relative after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px] after:absolute '>
+                            {/* <div className='flex group cursor-pointer text-slate-800 text-sm justify-center items-center gap-1 relative after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px] after:absolute '>
                                 <img src="http://localhost:3000/images/language.png" alt="" />
                                 <span><IoMdArrowDropdown /></span>
                                 <ul className='absolute invisible transition-all top-12 rounded-sm duration-200 text-white p-2 w-[100px] flex flex-col gap-3 group-hover:visible group-hover:top-6 group-hover:bg-black z-10'>
                                 <li>Türkçe</li>
                                 <li>English</li>
                                 </ul>
-                            </div>
+                            </div> */}
                             {
                                 userInfo ? <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/dashboard'>
                                     <span> <FaUser/> </span>
                                     <span>{userInfo.name} </span>
                                     </Link> : <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/login'>
                                     <span> <FaLock /> </span>
-                                    <span>Login </span>
+                                    <span>Giriş Yap </span>
                                     </Link>
                             } 
 
@@ -211,20 +211,20 @@ const Header = () => {
 
                         <ul className='flex flex-col justify-start items-start text-sm font-bold uppercase'>
                             <li>
-                                <Link className={`py-2 block ${pathname === '/' ?  'text-[#059473]' : 'text-slate-600' } `} >Home</Link>
+                                <Link className={`py-2 block ${pathname === '/' ?  'text-[#059473]' : 'text-slate-600' } `} >Anasayfa</Link>
                             </li>
 
                             <li>
-                                <Link to='/shops' className={`py-2 block ${pathname === '/shops' ?  'text-[#059473]' : 'text-slate-600' } `} >Shop</Link>
+                                <Link to='/shops' className={`py-2 block ${pathname === '/shops' ?  'text-[#059473]' : 'text-slate-600' } `} >Mağaza</Link>
                             </li>
                             <li>
                                 <Link className={`py-2 block ${pathname === '/blog' ?  'text-[#059473]' : 'text-slate-600' } `} >Blog</Link>
                             </li>
                             <li>
-                                <Link className={`py-2 block ${pathname === '/about' ?  'text-[#059473]' : 'text-slate-600' } `} >About Us</Link>
+                                <Link className={`py-2 block ${pathname === '/about' ?  'text-[#059473]' : 'text-slate-600' } `} >Hakkımızda</Link>
                             </li>
                             <li>
-                                <Link className={`py-2 block ${pathname === '/contact' ?  'text-[#059473]' : 'text-slate-600' } `} >Contact Us</Link>
+                                <Link className={`py-2 block ${pathname === '/contact' ?  'text-[#059473]' : 'text-slate-600' } `} >İletişim</Link>
                             </li>
                         </ul>
                         <div className='flex justify-start items-center gap-4 text-black'>
@@ -239,15 +239,15 @@ const Header = () => {
                             <span><FaPhoneAlt /></span>
                             </div>
                             <div className='flex justify-end flex-col gap-1'>
-                                <h2 className='text-sm font-medium text-slate-700'>+905554443333</h2>
-                                <span className='text-xs'>Support 24/7</span> 
+                                <h2 className='text-sm font-medium text-slate-700'>+90 (111) 111 1111</h2>
+                                <span className='text-xs'>Canlı Destek 24/7</span> 
                             </div>
                         </div>
 
                         <ul className='flex flex-col justify-start items-start gap-3 text-[#1c1c1c]'>
                             <li className='flex justify-start items-center gap-2 text-sm'>
                                 <span><MdEmail /></span>
-                                <span>support@gmail.com</span>
+                                <span>yonetici@yonetici.com</span>
                             </li>
                         </ul> 
 
@@ -263,7 +263,7 @@ const Header = () => {
                             <div onClick={() => setCategoryShow(!categoryShow) } className='h-[50px] bg-[#059473] text-white flex justify-center md-lg:justify-between md-lg:px-6 items-center gap-3 font-bold text-md cursor-pointer'>
                                 <div className='flex justify-center items-center gap-3'>
                                     <span><FaList/></span>
-                                    <span>All Category </span>
+                                    <span>Tüm Kategoriler </span>
                                 </div>
                                 <span className='pt-1'><IoIosArrowDown /></span>
                             </div>
@@ -292,7 +292,7 @@ const Header = () => {
                                 <div className='flex border h-[50px] items-center relative gap-6'>
                                     <div className='relative after:absolute after:h-[25px] after:w-[1px] after:bg-[#afafaf] after:-right-[15px] md:hidden'>
                                         <select onChange={(e) => setCategory(e.target.value)} className='w-[150px] text-slate-600 font-semibold bg-transparent px-2 h-full outline-0 border-none' name="" id="">
-                                            <option value="">Select Category</option>
+                                            <option value="">Kategori Seçin</option>
                                             {
                                                 categories.map((c, i) => <option key={i} value={c.name}>
                                                     {c.name}
@@ -300,8 +300,8 @@ const Header = () => {
                                             }
                                         </select>
                                     </div>
-                                    <input className='w-full relative bg-transparent text-slate-500 outline-0 px-3 h-full' onChange={(e)=> setSearchValue(e.target.value)} type="text" name='' id='' placeholder='What do you need' />
-                                    <button onClick={search} className='bg-[#059473] right-0 absolute px-8 h-full font-semibold uppercase text-white'>Search</button>
+                                    <input className='w-full relative bg-transparent text-slate-500 outline-0 px-3 h-full' onChange={(e)=> setSearchValue(e.target.value)} type="text" name='' id='' placeholder='Ne aramak istersiniz' />
+                                    <button onClick={search} className='bg-[#059473] right-0 absolute px-8 h-full font-semibold uppercase text-white'>Ara</button>
                                 </div> 
                             </div>
 
@@ -312,8 +312,8 @@ const Header = () => {
                                         <span><FaPhoneAlt /></span>
                                     </div>
                                     <div className='flex justify-end flex-col gap-1'>
-                                        <h2 className='text-md font-medium text-slate-700'>+905554443333</h2>
-                                        <span className='text-sm'>Support 24/7</span> 
+                                        <h2 className='text-md font-medium text-slate-700'>+90 (111) 111 1111</h2>
+                                        <span className='text-sm'>Canlı Destek 24/7</span> 
                                     </div>
                                 </div>
 

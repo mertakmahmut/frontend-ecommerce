@@ -30,15 +30,15 @@ const Home = () => {
                 <div className='w-[85%] flex flex-wrap mx-auto'>
                     <div className='grid w-full grid-cols-3 md-lg:grid-cols-2 md:grid-cols-1 gap-7'>
                         <div className='overflow-hidden'>
-                            <Products products = {latest_product} title='Latest Product'/>
+                            <Products products = {latest_product} title='Son Eklenenler'/>
 
                         </div>
                         <div className='overflow-hidden'>
-                            <Products products = {topRated_product} title='Top Rated Product'/>
+                            <Products products = {topRated_product} title='En Çok Beğenilenler'/>
 
                         </div>
                         <div className='overflow-hidden'>
-                            <Products products = {discount_product} title='Discount Product'/>
+                            <Products products = {discount_product} title='İndirimli Ürünler'/>
 
                         </div>
 

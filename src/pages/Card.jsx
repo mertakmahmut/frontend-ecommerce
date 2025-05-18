@@ -64,13 +64,13 @@ const Card = () => {
             <div className='absolute left-0 top-0 w-full h-full bg-[#2422228a]'>
                 <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
                     <div className='flex flex-col justify-center gap-1 items-center h-full w-full text-white'>
-                        <h2 className='text-3xl font-bold'>Cart Page </h2>
+                        <h2 className='text-3xl font-bold'>Sepet Ekranı </h2>
                         <div className='flex justify-center items-center gap-2 text-2xl w-full'>
-                            <Link to='/'>Home</Link>
+                            <Link to='/'>Anasayfa</Link>
                             <span className='pt-1'>
                                 <IoIosArrowForward />
                             </span>
-                            <span>Cart</span>
+                            <span>Sepet</span>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@ const Card = () => {
                             <div className='pr-3 md-lg:pr-0'>
                                 <div className='flex flex-col gap-3'>
                                     <div className='bg-white p-4'>
-                                        <h2 className='text-md text-green-500 font-semibold'>Stock Products {cart_products.length}</h2>
+                                        <h2 className='text-md text-green-500 font-semibold'>Stoktaki Ürünler {cart_products.length}</h2>
                                     </div>
 
                                     {
@@ -106,15 +106,15 @@ const Card = () => {
                                                                 <img className='w-[80px] h-[80px]' src={pt.productInfo.images[0]} alt="" />
                                                                 <div className='pr-4 text-slate-600'>
                                                                     <h2 className='text-md font-semibold'>{pt.productInfo.name} </h2>
-                                                                    <span className='text-sm'>Brand: {pt.productInfo.brand}</span>
+                                                                    <span className='text-sm'>Marka: {pt.productInfo.brand}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
                         
                                                         <div className='flex justify-between w-5/12 sm:w-full sm:mt-3'>
                                                             <div className='pl-4 sm:pl-0'>
-                                                                <h2 className='text-lg text-orange-500'>${pt.productInfo.price - Math.floor((pt.productInfo.price * pt.productInfo.discount) / 100)}</h2>
-                                                                <p className='line-through'>${pt.productInfo.price}</p>
+                                                                <h2 className='text-lg text-orange-500'>₺{pt.productInfo.price - Math.floor((pt.productInfo.price * pt.productInfo.discount) / 100)}</h2>
+                                                                <p className='line-through'>₺{pt.productInfo.price}</p>
                                                                 <p>-{pt.productInfo.discount}%</p>
                                                             </div>
                                                             <div className='flex gap-2 flex-col'>
@@ -124,7 +124,7 @@ const Card = () => {
                                                                     <div onClick={() => inc(pt.quantity, pt.productInfo.stock, pt._id)} className='px-3 cursor-pointer'>+</div>
 
                                                                 </div>
-                                                                <button onClick={() => dispatch(delete_cart_product(pt._id)) } className='px-5 py-[3px] bg-red-500 text-white'>Delete</button>
+                                                                <button onClick={() => dispatch(delete_cart_product(pt._id)) } className='px-5 py-[3px] bg-red-500 text-white'>Sil</button>
 
                                                             </div>
 
@@ -142,7 +142,7 @@ const Card = () => {
                                     {
                                         outofstock_products.length > 0 && <div className='flex flex-col gap-3'>
                                             <div className='bg-white p-4'>
-                                                <h2 className='text-md text-red-500 font-semibold'>Out of Stock {outofstock_products.length}</h2>
+                                                <h2 className='text-md text-red-500 font-semibold'>Stoklar tükendi {outofstock_products.length}</h2>
                                             </div>
 
                                             <div className='bg-white p-4'>
@@ -154,15 +154,15 @@ const Card = () => {
                                                                     <img className='w-[80px] h-[80px]' src={p.products[0].images[0]} alt="" />
                                                                     <div className='pr-4 text-slate-600'>
                                                                         <h2 className='text-md font-semibold'>{p.products[0].name} </h2>
-                                                                        <span className='text-sm'>Brand: {p.products[0].brand}</span>
+                                                                        <span className='text-sm'>Marka: {p.products[0].brand}</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
                             
                                                             <div className='flex justify-between w-5/12 sm:w-full sm:mt-3'>
                                                                 <div className='pl-4 sm:pl-0'>
-                                                                    <h2 className='text-lg text-orange-500'>${p.products[0].price - Math.floor((p.products[0].price * p.products[0].discount) / 100 )}</h2>
-                                                                    <p className='line-through'>${p.products[0].price}</p>
+                                                                    <h2 className='text-lg text-orange-500'>₺{p.products[0].price - Math.floor((p.products[0].price * p.products[0].discount) / 100 )}</h2>
+                                                                    <p className='line-through'>₺{p.products[0].price}</p>
                                                                     <p>-{p.products[0].discount}%</p>
                                                                 </div>
                                                                 <div className='flex gap-2 flex-col'>
@@ -196,26 +196,26 @@ const Card = () => {
                             <div className='pl-3 md-lg:pl-0 md-lg:mt-5'>
                                 {
                                     cart_products.length > 0 && <div className='bg-white p-3 text-slate-600 flex flex-col gap-3'>
-                                        <h2 className='text-xl font-bold'>Order Summary</h2>
+                                        <h2 className='text-xl font-bold'>Sipariş Özeti</h2>
                                         <div className='flex justify-between items-center'>
-                                            <span>{buy_product_item} Items </span>
-                                            <span>${price} </span>
+                                            <span>{buy_product_item} Ürün </span>
+                                            <span>₺{price} </span>
                                         </div>
                                         <div className='flex justify-between items-center'>
-                                            <span>Shipping Fee </span>
-                                            <span>${shipping_fee} </span>
+                                            <span>Kargo Ücreti </span>
+                                            <span>₺{shipping_fee} </span>
                                         </div>
                                         <div className='flex gap-2'>
-                                        <input className='w-full px-3 py-2 border border-slate-200 outline-0 focus:border-green-500 rounded-sm' type="text" placeholder='Input Voucher Coupon' />
-                                        <button className='px-5 py-[1px] bg-[#059473] text-white rounded-sm uppercase text-sm'>Apply</button>
+                                        <input className='w-full px-3 py-2 border border-slate-200 outline-0 focus:border-green-500 rounded-sm' type="text" placeholder='Kupon kodu girin' />
+                                        <button className='px-5 py-[1px] bg-[#059473] text-white rounded-sm uppercase text-sm'>Uygula</button>
                                         </div>
                         
                                         <div className='flex justify-between items-center'>
-                                            <span>Total</span>
-                                            <span className='text-lg text-[#059473]'>${price + shipping_fee} </span>
+                                            <span>Toplam</span>
+                                            <span className='text-lg text-[#059473]'>₺{price + shipping_fee} </span>
                                         </div>
                                         <button onClick={redirect} className='px-5 py-[6px] rounded-sm hover:shadow-red-500/50 hover:shadow-lg bg-red-500 text-sm text-white uppercase '>
-                                            Process to Checkout ({buy_product_item})
+                                            Alışverişi Tamamla ({buy_product_item})
                                         </button>
 
                                     </div>

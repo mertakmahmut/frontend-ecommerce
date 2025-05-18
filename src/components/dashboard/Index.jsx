@@ -40,7 +40,7 @@ const Index = () => {
                     </div>
                     <div className='flex flex-col justify-start items-start text-slate-600'>
                         <h2 className='text-3xl font-bold'>{totalOrder}</h2>
-                        <span>Orders </span>
+                        <span>Siparişler </span>
                     </div>     
                 </div>
 
@@ -51,7 +51,7 @@ const Index = () => {
                     </div>
                     <div className='flex flex-col justify-start items-start text-slate-600'>
                         <h2 className='text-3xl font-bold'>{pendingOrders}</h2>
-                        <span>Pending Orders </span>
+                        <span>Bekleyen Siparişler </span>
                     </div>     
                 </div>
 
@@ -62,42 +62,42 @@ const Index = () => {
                     </div>
                     <div className='flex flex-col justify-start items-start text-slate-600'>
                         <h2 className='text-3xl font-bold'>{cancelledOrders}</h2>
-                        <span>Cancelled Orders </span>
+                        <span>İptal Edilen Siparişler </span>
                     </div>     
                 </div> 
             </div>
 
             <div className='bg-white p-5 mt-5 rounded-md'>
-                <h2>Recent Orders</h2>
+                <h2>Son Siparişler</h2>
                 <div className='pt-4'>
                     <div className='relative overflow-x-auto rounded-md'>
                         <table className='w-full text-sm text-left text-gray-500'>
                             <thead className='text-xs text-gray-700 uppercase bg-gray-200'>
                                 <tr>
-                                    <th scope='col' className='px-6 py-3'>Order Id</th>
-                                    <th scope='col' className='px-6 py-3'>Price</th>
-                                    <th scope='col' className='px-6 py-3'>Payment Status</th>
-                                    <th scope='col' className='px-6 py-3'>Order Status</th>
-                                    <th scope='col' className='px-6 py-3'>Action</th> 
+                                    <th scope='col' className='px-6 py-3'>Sipariş No</th>
+                                    <th scope='col' className='px-6 py-3'>Toplam</th>
+                                    <th scope='col' className='px-6 py-3'>Ödeme Durumu</th>
+                                    <th scope='col' className='px-6 py-3'>Sipariş Durumu</th>
+                                    <th scope='col' className='px-6 py-3'>Eylem</th> 
                                 </tr>
                             </thead>
                             <tbody>
                                 {recentOrders.map((order, index) => (
                                     <tr key={index} className='bg-white border-b'>
                                         <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>#{order._id}</td>
-                                        <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>${order.price}</td>
+                                        <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>₺{order.price}</td>
                                         <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{order.payment_status}</td>
                                         <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{order.delivery_status}</td>
                                         <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>
                                         <Link to={`/dashboard/order/details/${order._id}`}>
                                             <span className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded'>
-                                            View
+                                            Görüntüle
                                             </span>
                                         </Link>
 
                                         {
                                             order.payment_status != 'paid' && <span onClick={() => redirect(order)} className='bg-green-200 text-green-800 text-md font-semibold mr-2 px-3 py-[2px] rounded cursor-pointer'>
-                                            Pay Now
+                                            Şimdi Öde
                                             </span>
                                         }
                                         </td>

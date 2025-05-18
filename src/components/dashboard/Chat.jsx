@@ -84,7 +84,7 @@ const Chat = () => {
                 <div className='w-[230px]'>
                     <div className='flex justify-center gap-3 items-center text-slate-600 text-xl h-[50px]'>
                         <span><AiOutlineMessage /></span>
-                        <span>Message</span>
+                        <span>Mesajlar</span>
                     </div>
                     <div className='w-full flex flex-col text-slate-600 py-4 h-[400px] pr-3'>
                         {
@@ -148,7 +148,7 @@ const Chat = () => {
                                 <input className='hidden' type="file" />
                             </div>
                             <div className='border h-[40px] p-0 ml-2 w-[calc(100%-90px)] rounded-full relative'>
-                                <input value={text} onChange={(e) => setText(e.target.value)} type="text" placeholder='input message' className='w-full rounded-full h-full outline-none p-3' />
+                                <input value={text} onChange={(e) => setText(e.target.value)} type="text" placeholder='mesajınızı girin' className='w-full rounded-full h-full outline-none p-3' />
                                 <div className='text-2xl right-2 top-2 absolute cursor-auto'>
                                     <span><GrEmoji /></span>
                                 </div>
@@ -161,7 +161,7 @@ const Chat = () => {
                             </div>
                         </div>
                     </div> : <div className='w-full h-full flex justify-center items-center text-lg ont-bold text-slate-600'>
-                        <span>select seller</span>
+                        <span>satıcı seçiniz</span>
                     </div>
                     } 
                     

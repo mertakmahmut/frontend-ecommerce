@@ -179,13 +179,13 @@ const Details = () => {
             <div className='absolute left-0 top-0 w-full h-full bg-[#2422228a]'>
                 <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto '>
                     <div className='flex flex-col justify-center gap-1 items-center h-full w-full text-white'>
-                        <h2 className='text-3xl font-bold'>Product Details </h2>
+                        <h2 className='text-3xl font-bold'>Ürün Detayları </h2>
                         <div className='flex justify-center items-center gap-2 text-2xl w-full'>
-                            <Link to='/'>Home</Link>
+                            <Link to='/'>Anasayfa</Link>
                             <span className='pt-1'>
                                 <IoIosArrowForward />
                             </span>
-                            <span>Product Details</span>
+                            <span>Ürün Detayları</span>
                         </div>
                     </div>
 
@@ -199,7 +199,7 @@ const Details = () => {
                 <div className='bg-slate-100 py-5 mb-5'>
                     <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
                         <div className='flex justify-start items-center text-md text-slate-600 w-full'>
-                            <Link to='/'>Home</Link>
+                            <Link to='/'>Anasayfa</Link>
                             <span className='pt-1'><IoIosArrowForward /></span>
                             <Link to='/'>{product.category}</Link>
                             <span className='pt-1'><IoIosArrowForward /></span>
@@ -244,26 +244,26 @@ const Details = () => {
                             <div className='text-3xl text-slate-600 font-bold'>
                                 <h3>{product.name} </h3>
                             </div>
-                            <div className='flex justify-start items-center gap-4'>
+                            {/* <div className='flex justify-start items-center gap-4'>
                                 <div className='flex text-xl'>
                                     <Rating ratings={4.5} />
                                 </div>
                                 <span className='text-green-500'>({totalReview} reviews)</span> 
-                            </div>
+                            </div> */}
  
                             <div className='text-2xl text-red-500 font-bold flex gap-3'>
                                 {
                                     product.discount !== 0 ? <>
                                     Price : <h2 className='line-through'>{product.price}</h2>
-                                    <h2>${product.price - Math.floor((product.price * product.discount) / 100)} (-{product.discount}%) </h2>
+                                    <h2>₺{product.price - Math.floor((product.price * product.discount) / 100)} (-{product.discount}%) </h2>
                                     
-                                    </> : <h2> Price : ${product.price} </h2>
+                                    </> : <h2> Price : ₺{product.price} </h2>
                                 }
                             </div>      
 
                             <div className='text-slate-600'>
                                 <p>{product.description} </p>
-                                <p className='text-slate-600 py-1 font-bold'>Shop Name : {product.shopName}</p>
+                                <p className='text-slate-600 py-1 font-bold'>Mağaza Adı : {product.shopName}</p>
                             </div> 
 
                             <div className='flex gap-3 pb-10 border-b'>
@@ -292,12 +292,12 @@ const Details = () => {
 
                             <div className='flex py-5 gap-5'>
                                 <div className='w-[150px] text-black font-bold text-xl flex flex-col gap-5'>
-                                    <span>Availability</span>
-                                    <span>Share On</span> 
+                                    <span>Stok Durumu</span>
+                                    <span>Paylaş</span> 
                                 </div> 
                                 <div className='flex flex-col gap-5'>
                                     <span className={`text-${product.stock ? 'green' : 'red'}-500`}>
-                                        {product.stock ? `In Stock(${product.stock})` : 'Out Of Stock'}
+                                        {product.stock ? `Stokta(${product.stock})` : 'Stokta Yok'}
                                     </span>
 
                                     <ul className='flex justify-start items-center gap-3'>
@@ -341,8 +341,8 @@ const Details = () => {
                     <div className='w-[72%] md-lg:w-full'>
                         <div className='pr-4 md-lg:pr-0'>
                             <div className='grid grid-cols-2'>
-                            <button onClick={() => setState('reviews')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'reviews' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700'} rounded-sm`}>Reviews </button>
-                            <button onClick={() => setState('description')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'description' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700' } rounded-sm`}>Description </button>
+                            <button onClick={() => setState('reviews')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'reviews' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700'} rounded-sm`}>Yorumlar </button>
+                            <button onClick={() => setState('description')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'description' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700' } rounded-sm`}>Ürün Hakkında </button>
                             </div>
 
                             <div>
@@ -359,7 +359,7 @@ const Details = () => {
                     <div className='w-[28%] md-lg:w-full'>
                         <div className='pl-4 md-lg:pl-0'>
                             <div className='px-3 py-2 text-slate-600 bg-slate-200'>
-                                <h2 className='font-bold'>From {product.shopName}</h2>
+                                <h2 className='font-bold'>{product.shopName}</h2>
                             </div>
                             <div className='flex flex-col gap-5 mt-3 border p-3'>
                                 {
@@ -399,7 +399,7 @@ const Details = () => {
 
             <section>
             <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
-                <h2 className='text-2xl py-8 text-slate-600'>Related Products </h2>
+                <h2 className='text-2xl py-8 text-slate-600'>Benzer Ürünler </h2>
                 <div>
                     <Swiper
                     slidesPerView='auto'
