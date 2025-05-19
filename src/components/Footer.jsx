@@ -7,6 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { FaHeart } from "react-icons/fa6";
 import { FaCartShopping } from "react-icons/fa6";
+import medpazar from '../assets/Adsız (236 x 76 piksel) (472 x 152 piksel).png'
 
 const Footer = () => {
 
@@ -19,7 +20,7 @@ const Footer = () => {
             <div className='w-[85%] flex flex-wrap mx-auto border-b py-16 md-lg:pb-10 sm:pb-6'>
                 <div className='w-3/12 lg:w-4/12 sm:w-full'>
                     <div className='flex flex-col gap-3'>
-                        <img className='w-[248px] h-[76px]' src="http://localhost:3000/images/adminLogo.png" alt="logo" />
+                        <img className='h-full w-full' src={medpazar} alt="logo" />
                         <ul className='flex flex-col gap-2 text-slate-600'>
                             <li>Adres : Üsküdar/İstanbul</li>
                             <li>Phone : (111) 111 11 11</li>
