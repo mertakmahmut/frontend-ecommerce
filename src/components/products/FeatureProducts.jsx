@@ -92,12 +92,12 @@ const FeatureProducts = ({products}) => {
                     </div>
 
                     <div className='py-3 text-slate-600 px-2'>
-                        <h2 className='font-bold'>{p.name} </h2>
+                        <h2 className='font-bold truncate w-[230px]'>{p.name} </h2>
                         <div className='flex justify-start items-center gap-3'>
-                            <span className='text-md font-semibold'>₺{p.price - (p.price * p.discount) / 100 }</span>
-                            <div className='flex'>
+                            <span className='text-md font-semibold text-emerald-500	'>₺{p.price - (p.price * p.discount) / 100 }</span>
+                            {/* <div className='flex'>
                                 <Rating ratings = {p.rating}/>
-                            </div>
+                            </div> */}
                         </div>
                     </div>   
 

@@ -60,53 +60,13 @@ const Header = () => {
 
     return (
         <div className='w-full bg-white'>
-            <div className='header-top bg-[#caddff] md-lg:hidden'>
-                <div className='w-[85%] lg:w-[90%] mx-auto'>
-                    <div className='flex w-full justify-between items-center h-[50px] text-slate-500'>
-                        <ul className='flex justify-start items-center gap-8 font-semibold text-black'>
-                            <li className='flex relative justify-center items-center gap-2 text-sm after:absolute after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px]'>
-                                <span><MdEmail /></span>
-                                <span>yonetici@yonetici.com</span>
-                            </li>
-
-                            <li className='flex relative justify-center items-center gap-2 text-sm '>
-                                <span><IoMdPhonePortrait  /></span>
-                                <span>+90 (111) 111 1111</span>
-                            </li> 
-                        </ul>
-
-                        <div>
-                            <div className='flex justify-center items-center gap-10'>
-                                <div className='flex justify-center items-center gap-4 text-black'>
-                                    <a href="#"><FaFacebookF /></a>
-                                    <a href="#"><FaTwitter /> </a>
-                                    <a href="#"><FaLinkedin /></a>
-                                    <a href="#"><FaGithub /> </a> 
-                                </div>
-                                {/* <div className='flex group cursor-pointer text-slate-800 text-sm justify-center items-center gap-1 relative after:h-[18px] after:w-[1px] after:bg-[#afafaf] after:-right-[16px] after:absolute before:absolute before:h-[18px] before:bg-[#afafaf] before:w-[1px] before:-left-[20px]'>
-                                    <img src="http://localhost:3000/images/language.png" alt="" />
-                                    <span><IoMdArrowDropdown /></span>
-                                    <ul className='absolute invisible transition-all top-12 rounded-sm duration-200 text-white p-2 w-[100px] flex flex-col gap-3 group-hover:visible group-hover:top-6 group-hover:bg-black z-10'>
-                                    <li>Türkçe</li>
-                                    <li>English</li>
-                                    </ul>
-                                </div> */}
-
-                                {
-                                    userInfo ? <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/dashboard'>
-                                        <span> <FaUser/> </span>
-                                        <span>{userInfo.name} </span>
-                                        </Link> : <Link to='/login' className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' >
-                                        <span> <FaLock /> </span>
-                                        <span>Giriş Yap </span>
-                                        </Link>
-                                }
- 
-                            </div>
-                        </div> 
-                    </div> 
-                </div> 
-            </div>
+            <header className="bg-[#f3f6fa] text-[#77777f] py-2 shadow-md">
+                <div className="max-w-[600px] mx-auto text-center">
+                    <h1 className="text-xl font-semibold">
+                    <span className="">MEDPAZAR</span>’a! Hoşgeldiniz!
+                    </h1>
+                </div>
+            </header>
 
 
             <div className='w-white'>
@@ -128,7 +88,7 @@ const Header = () => {
                             <div className='flex justify-between md-lg:justify-center items-center flex-wrap pl-8'>
                                 <ul className='flex justify-start items-start gap-8 text-sm font-bold uppercase md-lg:hidden'>
                                     <li>
-                                        <Link className={`p-2 block ${pathname === '/' ?  'text-[#059473]' : 'text-slate-600' } `} >Anasayfa</Link>
+                                        <Link to='/' className={`p-2 block ${pathname === '/' ?  'text-[#059473]' : 'text-slate-600' } `} >Anasayfa</Link>
                                     </li>
 
                                     <li>
@@ -170,7 +130,16 @@ const Header = () => {
                                                     </div> 
                                                 }
                                             
-                                        </div> 
+                                        </div>
+                                        {
+                                            userInfo ? <Link to={'/dashboard'} className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
+                                            <span className='text-xl text-black-500'><FaUser  /></span>
+                                            
+                                            </Link>  : <Link className='flex cursor-pointer justify-center items-center gap-2 text-sm text-black' to='/login'>
+                                                <span> <FaLock /> </span>
+                                                <span>Giriş Yap </span>
+                                                </Link>
+                                        }    
                                     </div> 
                                 </div> 
                             </div> 
@@ -212,7 +181,7 @@ const Header = () => {
 
                         <ul className='flex flex-col justify-start items-start text-sm font-bold uppercase'>
                             <li>
-                                <Link className={`py-2 block ${pathname === '/' ?  'text-[#059473]' : 'text-slate-600' } `} >Anasayfa</Link>
+                                <Link to='/' className={`py-2 block ${pathname === '/' ?  'text-[#059473]' : 'text-slate-600' } `} >Anasayfa</Link>
                             </li>
 
                             <li>
