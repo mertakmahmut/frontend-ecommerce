@@ -30,6 +30,18 @@ export const customer_login = createAsyncThunk(
     }
 )
 
+export const change_password = createAsyncThunk(
+    'auth/change_password',
+    async(info, { rejectWithValue, fulfillWithValue}) => {
+        try {
+            const {data} = await api.post('/customer/change-password', info, {withCredentials: true}) 
+            return fulfillWithValue(data)
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
 const decodeToken = (token) => {
     if (token) {
         const userInfo = jwtDecode(token)
@@ -84,6 +96,19 @@ export const authReducer = createSlice({
             state.successMessage = payload.message;
             state.loader = false;
             state.userInfo = userInfo
+        })
+
+        .addCase(change_password.pending, (state) => {
+            state.loader = true;
+            state.errorMessage = null
+        })
+        .addCase(change_password.rejected, (state, action) => {
+            state.loader = false;
+            state.errorMessage = action.payload.message
+        })
+        .addCase(change_password.fulfilled, (state, action) => {
+            state.loader = false;
+            state.successMessage = action.payload
         })
 
     }
