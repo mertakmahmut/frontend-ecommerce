@@ -22,6 +22,7 @@ import Wishlist from './components/dashboard/Wishlist';
 import OrderDetails from './components/dashboard/OrderDetails';
 import Chat from './components/dashboard/Chat';
 import ConfirmOrder from './pages/ConfirmOrder';
+import Success from './pages/Success';
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
       <Route path='/products/search?' element= {<SearchProducts/>} />
       <Route path='/product/details/:slug' element= {<Details/>} />
       <Route path='/order/confirm?' element= {<ConfirmOrder/>} />
+      <Route path="/order/success" element={<Success />} />
 
       <Route path='/dashboard' element= {<ProtectUser/>} > 
         <Route path='' element = {<Dashboard/>}>
