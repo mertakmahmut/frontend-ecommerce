@@ -108,7 +108,7 @@ export const authReducer = createSlice({
         })
         .addCase(change_password.fulfilled, (state, action) => {
             state.loader = false;
-            state.successMessage = action.payload
+            state.successMessage = action.payload.message
         })
 
     }

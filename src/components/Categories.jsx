@@ -67,7 +67,7 @@ const Categories = () => {
                 arrows={true} 
                 responsive={responsive}
                 transitionDuration={500}
-            >
+            > 
             {
                 categories.map((c, i) => <Link className='h-[185px] border block' key={i} to={`/products?category=${c.name}`}>
                     <div className='w-full h-full relative p-3'>

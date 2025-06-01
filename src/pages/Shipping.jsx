@@ -57,7 +57,7 @@ const Shipping = () => {
         <div>
             <Header/>
 
-            <section className='bg-[url("http://localhost:3000/images/banner/shop.png")] h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'>
+            <section className='bg-[url("http://localhost:3000/images/banner/med.png")] h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'>
                 <div className='absolute left-0 top-0 w-full h-full bg-[#2422228a]'>
                     <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
                         <div className='flex flex-col justify-center gap-1 items-center h-full w-full text-white'>
@@ -139,13 +139,13 @@ const Shipping = () => {
 
                                 {
                                     res && <div className='flex flex-col gap-1'>
-                                    <h2 className='text-slate-600 font-semibold pb-2'>Alıcı {state.name}</h2>
+                                    <h2 className='text-slate-600 font-semibold pb-2'>Alıcı: {state.name}</h2>
                                     <p>
                                         <span className='bg-blue-200 text-blue-800 text-sm font-medium mr-2 px-2 py-1 rounded'>Home</span>
                                         <span>{state.phone} {state.address} {state.country} {state.city} {state.district} </span>
                                         <span onClick={() => setRes(false)} className='text-indigo-500 cursor-pointer'>Değiştir</span>
                                     </p>
-                                    <p className=''text-slate-600 text-sm>E-posta {userInfo.email}</p>
+                                    <p className=''text-slate-600 text-sm>E-posta: {userInfo.email}</p>
                                 </div>
                                 }
         

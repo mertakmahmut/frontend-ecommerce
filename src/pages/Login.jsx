@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { FadeLoader } from "react-spinners";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import medpazar from '../assets/medpazar-depo2.jpg'
 
 const Login = () => {
 
@@ -114,8 +115,8 @@ const Login = () => {
                             </a>
                             </div> 
 
-                            <div className='w-full h-full py-4 pr-4'>
-                                <img src="http://localhost:3000/images/login.jpg" alt="" />
+                            <div className='w-full h-[400px] py-4 pr-4'>
+                                <img src={medpazar} alt="" />
                             </div>    
 
                         </div>

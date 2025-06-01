@@ -142,7 +142,7 @@ const Card = () => {
                                     {
                                         outofstock_products.length > 0 && <div className='flex flex-col gap-3'>
                                             <div className='bg-white p-4'>
-                                                <h2 className='text-md text-red-500 font-semibold'>Stoklar tükendi {outofstock_products.length}</h2>
+                                                <h2 className='text-md text-red-500 font-semibold'>Stok Dışı Ürünler {outofstock_products.length}</h2>
                                             </div>
 
                                             <div className='bg-white p-4'>

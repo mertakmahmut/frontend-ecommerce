@@ -139,6 +139,7 @@ const Header = () => {
                                                 <span> <FaLock /> </span>
                                                 <span>Giriş Yap </span>
                                                 </Link>
+                                                
                                         }    
                                     </div> 
                                 </div> 

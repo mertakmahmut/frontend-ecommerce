@@ -151,15 +151,15 @@ export const homeReducer = createSlice({
             state.moreProducts = payload.moreProducts;
         })
 
-        .addCase(customer_review.fulfilled, (state, { payload }) => {
-            state.successMessage = payload.message;
-        })
+        // .addCase(customer_review.fulfilled, (state, { payload }) => {
+        //     state.successMessage = payload.message;
+        // })
 
-        .addCase(get_reviews.fulfilled, (state, { payload }) => {
-            state.totalReview = payload.totalReview;
-            state.reviews = payload.reviews;
-            state.rating_review = payload.rating_review;
-        })
+        // .addCase(get_reviews.fulfilled, (state, { payload }) => {
+        //     state.totalReview = payload.totalReview;
+        //     state.reviews = payload.reviews;
+        //     state.rating_review = payload.rating_review;
+        // })
 
     }
 })

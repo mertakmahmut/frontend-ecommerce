@@ -32,7 +32,7 @@ const Details = () => {
     const { product, relatedProducts, moreProducts, totalReview } = useSelector(state => state.home)
     const { userInfo } = useSelector(state => state.auth)
 
-    const [state, setState] = useState('reviews')
+    const [state, setState] = useState('description')
 
     const dispatch = useDispatch()
     const {slug} = useParams()
@@ -175,7 +175,7 @@ const Details = () => {
         <div>
             <Header />
 
-            <section className='bg-[url("http://localhost:3000/images/banner/shop.png")] h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'>
+            <section className='bg-[url("http://localhost:3000/images/banner/med.png")] h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'>
             <div className='absolute left-0 top-0 w-full h-full bg-[#2422228a]'>
                 <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto '>
                     <div className='flex flex-col justify-center gap-1 items-center h-full w-full text-white'>
@@ -341,8 +341,9 @@ const Details = () => {
                     <div className='w-[72%] md-lg:w-full'>
                         <div className='pr-4 md-lg:pr-0'>
                             <div className='grid grid-cols-2'>
-                            <button onClick={() => setState('reviews')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'reviews' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700'} rounded-sm`}>Yorumlar </button>
+                            
                             <button onClick={() => setState('description')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'description' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700' } rounded-sm`}>Ürün Hakkında </button>
+                            <button onClick={() => setState('reviews')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'reviews' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700'} rounded-sm`}>Yorumlar </button>
                             </div>
 
                             <div>
@@ -375,7 +376,7 @@ const Details = () => {
                                                 </div>
                                                 <h2 className='text-slate-600 py-1 font-bold'>{p.name} </h2>
                                                 <div className='flex gap-2'>
-                                                    <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
+                                                    <h2 className='text-lg font-bold text-slate-600'>₺{p.price}</h2>
                                                     <div className='flex items-center gap-2'>
                                                         <Rating ratings={p.rating}  />
                                                     </div>
@@ -444,10 +445,10 @@ const Details = () => {
                                         <div className='p-4 flex flex-col gap-1'>
                                             <h2 className='text-slate-600 text-lg font-bold'>{p.name} </h2>
                                             <div className='flex justify-start items-center gap-3'>
-                                                <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
-                                                <div className='flex'>
+                                                <h2 className='text-lg font-bold text-slate-600'>₺{p.price}</h2>
+                                                {/* <div className='flex'>
                                                     <Rating ratings={p.rating} />
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
 

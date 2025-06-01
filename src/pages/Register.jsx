@@ -9,6 +9,7 @@ import { customer_register, messageClear } from '../store/reducers/authReducer';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { FadeLoader } from "react-spinners";
+import medpazar from '../assets/medpazar-depo2.jpg'
 
 const Register = () => {
 
@@ -124,7 +125,7 @@ const Register = () => {
                             </div> 
 
                             <div className='w-full h-full py-4 pr-4'>
-                                <img src="http://localhost:3000/images/login.jpg" alt="" />
+                                <img src={medpazar} alt="" />
                             </div>    
 
                         </div>

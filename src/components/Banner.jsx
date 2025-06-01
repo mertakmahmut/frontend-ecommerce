@@ -41,7 +41,7 @@ const Banner = () => {
                 >
                 {
                     [1,2,3].map((img, i) => <Link key={i} to='#'>
-                        <img src={`http://localhost:3000/images/banner/${img}.png`} alt="" />
+                        <img className='h-[500px] w-full' src={`http://localhost:3000/images/banner/${img}.png`} alt="" />
                     </Link> )
                 }
                 </Carousel>        

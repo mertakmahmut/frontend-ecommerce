@@ -59,7 +59,7 @@ const Orders = () => {
                             {myOrders.map((order, index) => (
                                 <tr key={index} className='bg-white border-b'>
                                     <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>#{order._id}</td>
-                                    <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>${order.price}</td>
+                                    <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>₺{order.price}</td>
                                     <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{order.payment_status}</td>
                                     <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>{order.delivery_status}</td>
                                     <td scope='row' className='px-6 py-4 font-medium whitespace-nowrap'>
